@@ -1,5 +1,7 @@
 # Norskveien
 
+**Live:** https://divyprakash.github.io/norskveien/
+
 A website for learning Norwegian (bokmål) from A2 to B2. It covers grammar, pronunciation, reading, speaking, writing and everyday life in Norway. It includes a placement test, a "today's focus" plan, level tests, and accounts so each learner's progress is saved.
 
 The site is plain HTML with no build step. Accounts and saved progress use [Supabase](https://supabase.com), which is free for small projects.
@@ -8,7 +10,13 @@ The site is plain HTML with no build step. Accounts and saved progress use [Supa
 
 | File | What it is |
 |---|---|
-| `index.html` | The whole site: lessons, exercises, progress, login |
+| `index.html` | The page shell |
+| `css/style.css` | Design |
+| `js/course.js` | Levels, skill areas, placement test, exercise helpers |
+| `js/content-a2.js`, `content-b1.js`, `content-b2.js` | The lessons (25 per level, all in bokmål) |
+| `js/checker.js` | Automatic text check for writing tasks |
+| `js/dynamic.js` | "Dagens tekst" from Norwegian Wikipedia and the resource list |
+| `js/app.js` | The app: progress, today's plan, exercises, login |
 | `config.js` | Your Supabase address and public key (fill in once) |
 | `supabase-setup.sql` | Creates the progress table and its privacy rules (run once) |
 
@@ -33,6 +41,12 @@ To skip email confirmation, turn off **Confirm email** under **Authentication** 
 - Logged-in users: progress is saved to their account and follows them to any device. Each person can only read and change their own row, enforced by the rules in `supabase-setup.sql`.
 - Visitors without an account: progress is saved in their browser.
 - If someone used the site before creating an account, their progress is merged into the account the first time they log in.
+
+## Exercise types
+Multiple choice, true/false, fill in, word order, listening, dictation, name the picture, speaking with microphone check (Chrome/Edge) or self-rating, writing and picture writing with an automatic text check.
+
+## Adding lessons
+Each level file holds one list per skill area. Copy an existing lesson object and change it. In multiple-choice items the **first** option is the correct one, and options are shuffled on screen.
 
 ## Audio
 Pronunciation and listening use the browser's built-in voice. For the best result, learners should install a Norwegian voice on their device. The site explains how.
