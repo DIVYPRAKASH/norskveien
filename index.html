@@ -147,8 +147,8 @@ textarea.inp{min-height:200px;resize:vertical;line-height:1.6;font-size:16px}
 </head>
 <body>
 <div class="wrap" id="app"></div>
-<script src="config.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script src="config.js?v=2"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
 <script>
 // Course content. Convention: in mc/listen items the FIRST option is the correct one (options are shuffled on screen).
 const mc=(q,o,x)=>({t:"mc",q,o,x});
@@ -778,7 +778,7 @@ async function cloudInit(){
 }
 function acctChip(){
   const s=C.status;
-  if(s==="local")return `<span id="acct"></span>`;
+  if(s==="local")return CFG.supabaseUrl&&!/YOUR/i.test(CFG.supabaseUrl)?`<button id="acct" class="btn ghost sm" data-a="noLogin">Logg inn</button>`:`<span id="acct"></span>`;
   if(s==="signedout")return `<button id="acct" class="btn ghost sm" data-a="auth">Logg inn</button>`;
   const label={checking:"Loading …",synced:C.name,error:"Not synced"}[s]||"";
   return `<button id="acct" class="acct" data-a="settings" title="${esc(s==="synced"?"Progress saved to your account":"Couldn't reach the server. Progress is saved in this browser.")}"><span class="sdot ${s==="synced"?"ok":s}"></span><span class="acct-t">${esc(label)}</span></button>`;
@@ -1092,6 +1092,7 @@ const A={
   reset(){S=fresh();save();V={view:"welcome"};render();toast("Progress deleted")},
   syncNow(){cloudWrite().then(()=>toast(C.status==="synced"?"Synced":"Couldn't sync. Try again later."))},
   auth(){V={view:"auth",mode:"signin"};render()},
+  noLogin(){toast("Login could not load. Check your connection or turn off ad blockers, then reload.")},
   signup(){V={view:"auth",mode:"signup"};render()},
   authMode(){V={view:"auth",mode:V.mode==="signup"?"signin":"signup"};render()},
   async forgot(){const e=document.getElementById("au-email").value.trim();if(!/^\S+@\S+\.\S+$/.test(e)){V.err="Type your email above first, then click Forgot password.";return render()}const {error}=await SB.auth.resetPasswordForEmail(e,{redirectTo:location.origin+location.pathname});V.err=error?error.message:"";V.msg=error?"":"If that email has an account, a reset link is on its way.";render()},
