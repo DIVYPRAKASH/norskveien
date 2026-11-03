@@ -1,0 +1,1111 @@
+<!doctype html>
+<html lang="nb">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Norskveien</title>
+<meta name="description" content="Learn Norwegian from A2 to B2: grammar, pronunciation, reading, speaking, writing and everyday life in Norway.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600;700&family=Figtree:wght@400;500;600&display=swap">
+<style>
+/* Layout: one calm centered column; the level route is the only "drawn" element. Flag blue for action, flag red only as a small marker. */
+:root{
+  --bg:#F6F7F9; --surface:#FFFFFF; --ink:#101A2B; --muted:#5D6779; --line:#E2E6EC; --soft:#EEF1F6;
+  --primary:#00205B; --primary-fg:#FFFFFF; --accent:#C8102E;
+  --good:#1D7A4B; --good-soft:#E3F3EA; --bad:#B24E17; --bad-soft:#FBEDE3;
+  --display:"Familjen Grotesk","Helvetica Neue",Arial,sans-serif;
+  --body:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --r:14px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0E1218; --surface:#161C25; --ink:#E8ECF2; --muted:#909BAB; --line:#263041; --soft:#1C2430;
+  --primary:#9DBBFF; --primary-fg:#0E1218; --accent:#FF5C70;
+  --good:#52C68E; --good-soft:#15291F; --bad:#F0A060; --bad-soft:#2D2015; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0E1218; --surface:#161C25; --ink:#E8ECF2; --muted:#909BAB; --line:#263041; --soft:#1C2430;
+  --primary:#9DBBFF; --primary-fg:#0E1218; --accent:#FF5C70;
+  --good:#52C68E; --good-soft:#15291F; --bad:#F0A060; --bad-soft:#2D2015; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:880px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 64px}
+h1,h2,h3{font-family:var(--display);font-weight:600;letter-spacing:-.01em;line-height:1.2;text-wrap:balance;margin:0}
+h1{font-size:clamp(28px,5vw,40px)} h2{font-size:24px} h3{font-size:18px}
+p{margin:0}
+.muted{color:var(--muted)} .small{font-size:14px}
+.eyebrow{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.stack{display:flex;flex-direction:column;gap:16px}
+.row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:28px}
+.brand{font-family:var(--display);font-weight:700;font-size:20px;display:flex;align-items:center;gap:10px;background:none;border:0;color:var(--ink);cursor:pointer;padding:0}
+.flag{width:22px;height:16px;border-radius:3px;background:linear-gradient(90deg,transparent 30%,var(--primary) 30%,var(--primary) 42%,transparent 42%),linear-gradient(0deg,transparent 40%,var(--primary) 40%,var(--primary) 60%,transparent 60%),var(--accent);position:relative}
+.btn{font:inherit;font-weight:600;font-size:15px;border-radius:999px;padding:11px 20px;border:1px solid transparent;cursor:pointer;background:var(--primary);color:var(--primary-fg);transition:transform .08s ease,opacity .15s}
+.btn:active{transform:scale(.98)} .btn:disabled{opacity:.4;cursor:not-allowed}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn.ghost:hover{background:var(--soft)}
+.btn.link{background:none;border:0;color:var(--muted);padding:6px 8px;font-weight:500}
+.btn.link:hover{color:var(--ink)}
+.btn.sm{padding:7px 14px;font-size:14px}
+.acct{display:inline-flex;align-items:center;gap:8px;font:inherit;font-size:13px;color:var(--muted);background:none;border:1px solid var(--line);border-radius:99px;padding:4px 12px 4px 6px;cursor:pointer;max-width:260px}
+.acct:hover{color:var(--ink)}
+.acct-t{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sdot{width:10px;height:10px;border-radius:50%;background:var(--line);margin-left:4px;flex:none}
+.sdot.error{background:var(--bad)}.sdot.ok{background:var(--good)}
+.top .row{flex-wrap:nowrap}
+@media (max-width:560px){.acct{max-width:130px}.acct .acct-t.long{display:none}.acct{padding:6px}}
+button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--primary);outline-offset:2px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:20px}
+/* choice cards */
+.choices{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.choice{text-align:left;font:inherit;color:inherit;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px 18px;cursor:pointer;display:flex;flex-direction:column;gap:4px;transition:border-color .15s,background .15s}
+.choice:hover{border-color:var(--primary)}
+.choice .code{font-family:var(--display);font-weight:700;font-size:22px}
+.choice.alt{background:var(--soft);border-style:dashed}
+/* route */
+.route{position:relative;display:grid;grid-template-columns:repeat(4,1fr);margin:8px 0 4px}
+.route::before{content:"";position:absolute;left:12.5%;right:12.5%;top:17px;height:2px;background:var(--line)}
+.route .fill{position:absolute;left:12.5%;top:17px;height:2px;background:var(--primary)}
+.stn{position:relative;display:flex;flex-direction:column;align-items:center;gap:6px;background:none;border:0;font:inherit;color:inherit;cursor:pointer;padding:0 2px}
+.dot{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:var(--surface);border:2px solid var(--line);font-family:var(--display);font-weight:700;font-size:13px;color:var(--muted)}
+.stn.have .dot,.stn.done .dot{background:var(--primary);border-color:var(--primary);color:var(--primary-fg)}
+.stn.now .dot{border-color:var(--primary);color:var(--ink);box-shadow:0 0 0 4px var(--soft)}
+.stn.now .dot::after{content:"";position:absolute;top:-2px;right:calc(50% - 22px);width:9px;height:9px;border-radius:50%;background:var(--accent);border:2px solid var(--bg)}
+.stn.off{opacity:.45}
+.stn .lbl{font-size:12px;color:var(--muted);text-align:center;line-height:1.3}
+.stn.sel .lbl{color:var(--ink);font-weight:600}
+/* today */
+.today{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:22px;display:flex;flex-direction:column;gap:16px}
+.task{display:flex;gap:14px;align-items:center;padding:14px;border-radius:12px;background:var(--soft);cursor:pointer;border:1px solid transparent;font:inherit;color:inherit;text-align:left;width:100%}
+.task:hover{border-color:var(--line)}
+.task .ix{flex:none;width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:var(--surface);font-weight:700;font-size:14px;font-family:var(--display)}
+.task.main{background:var(--primary);color:var(--primary-fg)}
+.task.main .ix{background:var(--primary-fg);color:var(--primary)}
+.task.main .muted{color:inherit;opacity:.8}
+.task .tx{min-width:0;flex:1}
+.task .go{flex:none;font-size:20px;opacity:.7}
+/* skills */
+.skills{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
+.skill{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px;display:flex;flex-direction:column;gap:10px}
+.skill .hd{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.pct{font-variant-numeric:tabular-nums;font-weight:600;font-size:14px}
+.bar{height:6px;background:var(--soft);border-radius:99px;overflow:hidden}
+.bar>i{display:block;height:100%;background:var(--primary);border-radius:99px}
+.lessonbtn{display:flex;justify-content:space-between;gap:8px;align-items:center;font:inherit;font-size:14px;text-align:left;background:none;border:0;border-top:1px solid var(--line);padding:9px 0 0;color:inherit;cursor:pointer}
+.lessonbtn:hover .lt{text-decoration:underline}
+.lessonbtn .st{flex:none;font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+.lessonbtn .st.ok{color:var(--good);font-weight:600}
+.pill{display:inline-block;font-size:12px;font-weight:600;padding:3px 10px;border-radius:99px;background:var(--soft);color:var(--muted)}
+.pill.ok{background:var(--good-soft);color:var(--good)}
+.pill.now{background:var(--primary);color:var(--primary-fg)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.stat{padding:14px 16px;border:1px solid var(--line);border-radius:var(--r);background:var(--surface)}
+.stat b{display:block;font-family:var(--display);font-size:24px;font-variant-numeric:tabular-nums}
+.stat span{font-size:13px;color:var(--muted)}
+/* lesson */
+.progress{height:4px;background:var(--line);border-radius:99px;overflow:hidden;flex:1}
+.progress>i{display:block;height:100%;background:var(--primary);transition:width .3s}
+.lessonhd{display:flex;align-items:center;gap:12px;margin-bottom:24px}
+.prose{display:flex;flex-direction:column;gap:12px;max-width:66ch}
+.prose ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px}
+.no{font-weight:600;color:var(--primary)}
+.t{border-collapse:collapse;width:100%;font-size:15px}
+.t th,.t td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+.t th{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.tablewrap{overflow-x:auto}
+.passage{background:var(--soft);border-radius:var(--r);padding:18px 20px;white-space:pre-line;font-size:16px;line-height:1.7;max-width:66ch}
+details.passage summary{cursor:pointer;font-weight:600;font-size:14px;color:var(--muted)}
+.q{font-size:clamp(20px,3.4vw,24px);font-family:var(--display);font-weight:600;line-height:1.3}
+.opts{display:grid;gap:10px}
+.opt{font:inherit;text-align:left;padding:14px 16px;border-radius:12px;border:1px solid var(--line);background:var(--surface);color:inherit;cursor:pointer;font-size:16px}
+.opt:hover:not(:disabled){border-color:var(--primary)}
+.opt:disabled{cursor:default}
+.opt.right{border-color:var(--good);background:var(--good-soft)}
+.opt.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.fb{border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:4px}
+.fb.ok{background:var(--good-soft)} .fb.no{background:var(--bad-soft)}
+.fb b{font-family:var(--display)}
+.fb.ok b{color:var(--good)} .fb.no b{color:var(--bad)}
+.inp{font:inherit;font-size:18px;padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:var(--surface);color:var(--ink);width:100%}
+textarea.inp{min-height:200px;resize:vertical;line-height:1.6;font-size:16px}
+.keys{display:flex;gap:6px}
+.key{font:inherit;font-weight:600;width:40px;height:36px;border-radius:8px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
+.tiles{display:flex;flex-wrap:wrap;gap:8px;min-height:52px;padding:8px;border-radius:12px}
+.tiles.ans{border:1px dashed var(--line);background:var(--surface)}
+.tile{font:inherit;padding:8px 14px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;font-weight:500}
+.tiles.ans .tile{background:var(--soft)}
+.play{display:inline-flex;align-items:center;gap:8px}
+.say{font-family:var(--display);font-size:clamp(22px,4vw,28px);font-weight:600;line-height:1.3;color:var(--primary)}
+.chip{font-size:13px;padding:4px 10px;border-radius:99px;border:1px solid var(--line);color:var(--muted)}
+.chip.on{border-color:var(--good);color:var(--good);background:var(--good-soft)}
+.model{white-space:pre-line;background:var(--soft);border-radius:12px;padding:16px;font-size:15px}
+.notice{font-size:14px;padding:12px 14px;border-radius:12px;background:var(--soft);color:var(--muted)}
+.score{font-family:var(--display);font-size:64px;font-weight:700;line-height:1;font-variant-numeric:tabular-nums}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(20px + env(safe-area-inset-bottom,0px));background:var(--ink);color:var(--bg);padding:10px 18px;border-radius:99px;font-size:14px;z-index:20}
+@media (max-width:560px){.stats{grid-template-columns:1fr 1fr 1fr}.stat b{font-size:20px}.card,.today{padding:16px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap" id="app"></div>
+<script src="config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script>
+// Course content. Convention: in mc/listen items the FIRST option is the correct one (options are shuffled on screen).
+const mc=(q,o,x)=>({t:"mc",q,o,x});
+const fl=(q,a,x)=>({t:"fill",q,a:[].concat(a),x});
+const od=(q,w,x,alt)=>({t:"order",q,w,x,alt:alt||[]});
+const ls=(say,o,x)=>({t:"listen",say,o,x});
+const sp=(say,en,tip)=>({t:"speak",say,en,tip});
+const wr=(q,min,hints,model)=>({t:"write",q,min,hints,model});
+
+const LEVEL_INFO={
+  A1:{nb:"Nybegynner",en:"Beginner",can:"You know basic words and phrases and can introduce yourself."},
+  A2:{nb:"Grunnleggende",en:"Elementary",can:"Handle everyday situations: shopping, directions, talking about your week and what you did."},
+  B1:{nb:"Mellomnivå",en:"Intermediate",can:"Give opinions, write emails, follow everyday conversations and work life in Norway."},
+  B2:{nb:"Høyere mellomnivå",en:"Upper intermediate",can:"Discuss and argue, read news, write structured texts and understand different dialects."}
+};
+
+const SKILLS=[
+  {id:"gram",nb:"Grammatikk",en:"Grammar"},
+  {id:"uttale",nb:"Uttale",en:"Pronunciation"},
+  {id:"lese",nb:"Lesing",en:"Reading"},
+  {id:"snakke",nb:"Muntlig",en:"Speaking"},
+  {id:"skrive",nb:"Skriving",en:"Writing"},
+  {id:"kultur",nb:"Norge i praksis",en:"How it's used in Norway"}
+];
+
+const COURSE={
+/* ================= A2 ================= */
+A2:{
+gram:[
+{title:"Fortid og ordstilling",en:"Past tense and word order",
+intro:`<p>Use <b>preteritum</b> for finished events: <i>i går, i fjor, forrige uke</i>.</p>
+<table class="t"><tr><th>Group</th><th>Infinitive</th><th>Past</th></tr>
+<tr><td>-et</td><td>å snakke, å jobbe</td><td>snakket, jobbet</td></tr>
+<tr><td>-te</td><td>å spise, å kjøpe</td><td>spiste, kjøpte</td></tr>
+<tr><td>-de</td><td>å prøve, å leve</td><td>prøvde, levde</td></tr>
+<tr><td>-dde</td><td>å bo, å tro</td><td>bodde, trodde</td></tr>
+<tr><td>strong</td><td>gå, se, drikke, komme, være, ha</td><td>gikk, så, drakk, kom, var, hadde</td></tr></table>
+<p><b>The V2 rule:</b> the verb is always the second element. Start with a time or place and the subject moves behind the verb: <span class="no">I går <b>spiste</b> jeg fisk.</span></p>
+<p><b>ikke</b> comes right after the verb in a main clause: <span class="no">Jeg liker <b>ikke</b> kaffe.</span></p>`,
+ex:[
+fl("I går ___ jeg pizza. (spise)","spiste","-te group: spise → spiste."),
+fl("Vi ___ på kino på lørdag. (gå)","gikk","Strong verb: gå → gikk."),
+fl("Hun ___ i Trondheim før. (bo)","bodde","-dde group: bo → bodde."),
+mc("Choose the correct sentence.",["I dag spiser jeg fisk.","I dag jeg spiser fisk.","I dag fisk jeg spiser."],"V2: the verb comes second, right after “I dag”."),
+mc("Where does “ikke” go?",["Jeg liker ikke kaffe.","Jeg ikke liker kaffe.","Ikke jeg liker kaffe."],"In a main clause, ikke comes right after the verb."),
+od("Build: Tomorrow we travel to Tromsø.",["I morgen","reiser","vi","til","Tromsø"],"Time first, then the verb, then the subject.",["Vi reiser til Tromsø i morgen"])
+]},
+{title:"Perfektum og framtid",en:"Present perfect and future",
+intro:`<p><b>Perfektum</b> = <i>har</i> + past participle. Use it for experiences and things that still matter now, often with <i>aldri, noen gang, i to år</i>.</p>
+<table class="t"><tr><th>Infinitive</th><th>Perfect</th></tr>
+<tr><td>å snakke / å spise / å bo</td><td>har snakket / har spist / har bodd</td></tr>
+<tr><td>å gå / å se / å være</td><td>har gått / har sett / har vært</td></tr>
+<tr><td>å lese / å skrive / å ha</td><td>har lest / har skrevet / har hatt</td></tr></table>
+<p><b>Future:</b> <span class="no">Jeg <b>skal</b> reise.</span> (plan) · <span class="no">Det <b>kommer til å</b> regne.</span> (prediction) · <span class="no">I morgen <b>reiser</b> jeg.</span> (present + time word)</p>`,
+ex:[
+fl("Jeg har ___ her i to år. (bo)","bodd","bo → bodde → har bodd."),
+mc("“I have never been to Tromsø.”",["Jeg har aldri vært i Tromsø.","Jeg var aldri i Tromsø.","Jeg har aldri være i Tromsø."],"A life experience uses perfektum: har + vært."),
+fl("Har du ___ boka? (lese)","lest","lese → leste → har lest."),
+mc("“Det kommer til å regne i morgen.” What does it express?",["A prediction","A plan you have made","Something that happened"],"Kommer til å predicts. Use skal for plans."),
+fl("Vi ___ reise til Spania i sommer – vi har kjøpt billetter.","skal","A plan or arrangement uses skal."),
+od("Build: I have not eaten breakfast.",["Jeg","har","ikke","spist","frokost"],"ikke comes after the first verb (har).")
+]}
+],
+uttale:[
+{title:"Kj, sj og stumme bokstaver",en:"Kj, sj and silent letters",
+intro:`<p><b>Kj-sound</b> (soft, like German <i>ich</i>): kj, and k before i / y / ei / øy: <span class="no">kjøre, kino, kylling</span>.</p>
+<p><b>Sj-sound</b> (like English “sh”): sj, skj, and sk before i / y / ei / øy: <span class="no">sjø, skje, ski, sky</span>.</p>
+<p><b>Silent letters:</b></p><ul>
+<li><b>hv-</b> → v: <span class="no">hva, hvor</span></li>
+<li><b>hj- / gj-</b> → j: <span class="no">hjem, gjøre</span></li>
+<li><b>-d</b> after a vowel is often silent: <span class="no">god, glad, ved</span></li>
+<li><b>-ig</b> drops the g: <span class="no">hyggelig, viktig</span></li>
+<li><span class="no">jeg</span> sounds like “jæi”, <span class="no">meg / deg</span> like “mæi / dæi”</li></ul>`,
+ex:[
+mc("Which word starts with the “sh” sound?",["ski","kake","kopp"],"sk before i sounds like “sh”."),
+mc("How do you pronounce “hvor”?",["Like “vor”, the h is silent","With a strong h","Like “for”"],"hv- = v. Same in hva, hvem, hvorfor."),
+mc("In “hyggelig”, the final g is…",["silent","hard, like in “go”","like “j”"],"-ig endings drop the g: hyggelig, viktig, deilig."),
+ls("ski",["ski","si","sky"],"ski starts with the sh-sound."),
+ls("kino",["kino","Kina","kone"],"kino = cinema, Kina = China."),
+sp("Skal vi kjøre til sjøen?","Shall we drive to the sea?","Soft kj in kjøre, “sh” in sjøen."),
+sp("Hyggelig å hilse på deg.","Nice to meet you.","Silent g in hyggelig, “dæi” for deg.")
+]},
+{title:"Lange og korte vokaler",en:"Long and short vowels",
+intro:`<p>Every stressed vowel is either long or short, and it can change the meaning.</p>
+<table class="t"><tr><th>Short (double consonant)</th><th>Long</th></tr>
+<tr><td>takk (thanks)</td><td>tak (roof)</td></tr>
+<tr><td>hatt (hat)</td><td>hat (hate)</td></tr>
+<tr><td>vann (water)</td><td>van (used to)</td></tr></table>
+<p>Norwegian has nine vowels: <b>a e i o u y æ ø å</b>. Long <b>o</b> is close to English “oo” (<span class="no">bok, sol</span>). <b>y</b> is an “i” with rounded lips (<span class="no">by</span>).</p>`,
+ex:[
+mc("Which word has a short vowel?",["takk","tak","tal"],"A double consonant after the vowel makes it short."),
+ls("takk",["takk","tak"],"takk: short a."),
+ls("by",["by","bi"],"by = city (rounded lips), bi = bee."),
+ls("hus",["hus","hos"],"hus = house, hos = at someone's place."),
+mc("How is “o” usually pronounced in “bok”?",["Like “oo” in “food”","Like “o” in “hot”","Like “ow” in “cow”"],"Norwegian long o is close to English “oo”."),
+sp("Tusen takk for maten!","Thanks a lot for the food!","Short a in takk, long a in maten."),
+sp("Det er fint vær i dag.","The weather is nice today.","Long æ in vær.")
+]}
+],
+lese:[
+{title:"En helg på hytta",en:"A weekend at the cabin",
+text:`Forrige helg dro familien Hansen på hytta. Hytta ligger ved et vann, to timer fra Lillehammer. Det er ikke strøm der, så de brukte stearinlys og fyrte i peisen. På lørdag gikk de på ski, og på søndag fisket de på isen. Det var kaldt, minus femten grader, men alle syntes det var veldig koselig. Søndag kveld kjørte de hjem igjen. Det var mye trafikk, og de kom ikke hjem før klokka ti.`,
+intro:`<p>Read the text. Try to understand the whole story before checking words. The text stays visible while you answer.</p><p>Useful: <span class="no">strøm</span> = electricity, <span class="no">peis</span> = fireplace, <span class="no">ikke … før</span> = not until.</p>`,
+ex:[
+mc("Where is the cabin?",["By a lake","By the sea","In Lillehammer town"],"“Hytta ligger ved et vann.”"),
+mc("Why did they use candles?",["There is no electricity","It was Christmas","The lamps were broken"],"“Det er ikke strøm der.”"),
+mc("What did they do on Sunday?",["Ice fishing","Skiing","Shopping"],"“På søndag fisket de på isen.”"),
+fl("Alle syntes det var veldig ___.","koselig","Koselig = cosy, nice. A key Norwegian word."),
+mc("When did they get home?",["Not until ten o'clock","At two o'clock","On Monday"],"“De kom ikke hjem før klokka ti.”")
+]},
+{title:"Melding fra barnehagen",en:"A message from the kindergarten",
+text:`Hei alle foreldre!
+Fredag 14. februar har vi karneval i barnehagen. Barna kan gjerne komme utkledd, men husk varme klær under kostymet, for vi skal være ute etter lunsj. På formiddagen baker vi boller sammen. Barnehagen stenger klokka 15 denne dagen på grunn av planleggingsmøte for de ansatte.
+Hilsen Solsikken barnehage`,
+intro:`<p>A typical message parents get in Norway. Read it and answer the questions.</p><p>Useful: <span class="no">utkledd</span> = dressed up, <span class="no">på grunn av</span> = because of, <span class="no">de ansatte</span> = the staff.</p>`,
+ex:[
+mc("What happens on Friday?",["A carnival at the kindergarten","A parents' meeting","A trip to the cinema"],"“Fredag 14. februar har vi karneval.”"),
+mc("Why do children need warm clothes?",["They will be outside after lunch","The building is cold","They will go skiing"],"“vi skal være ute etter lunsj”"),
+mc("What will they bake?",["Buns","Pizza","Bread"],"boller = sweet buns."),
+fl("The kindergarten closes at ___ o'clock that day. (number)",["15","3"],"“stenger klokka 15”"),
+mc("Why does it close early?",["The staff have a planning meeting","Bad weather","It is a holiday"],"“på grunn av planleggingsmøte for de ansatte”")
+]}
+],
+snakke:[
+{title:"I butikken og på kafé",en:"At the shop and café",
+intro:`<p>Norwegian has no single word for “please”. Politeness comes from <b>Kan jeg få …?</b>, <b>takk</b> and a friendly tone.</p>
+<p>For each phrase: listen, repeat it aloud three times, then rate yourself honestly. Tip: record yourself on your phone and compare.</p>`,
+ex:[
+sp("Kan jeg få en kaffe, takk?","Can I have a coffee, please?","“Kan jeg få” is the polite way to order."),
+sp("Hvor mye koster det?","How much does it cost?","hv = v: “vor mye”."),
+sp("Kan jeg betale med kort?","Can I pay by card?",""),
+sp("Har dere noe uten gluten?","Do you have anything gluten-free?",""),
+mc("The cashier asks: “Trenger du pose?” A natural answer:",["Ja takk, én pose.","Ja, jeg er pose.","Nei, jeg har det bra."],"pose = bag."),
+mc("“Vil du ha kvitteringen?” means…",["Do you want the receipt?","Do you want a discount?","Do you want a bag?"],"kvittering = receipt.")
+]},
+{title:"Veien og legen",en:"Directions and the doctor",
+intro:`<p>Two situations you will meet early: finding your way, and booking a doctor's appointment.</p>
+<ul><li><span class="no">til venstre / til høyre</span> = left / right</li><li><span class="no">rett fram</span> = straight ahead</li><li><span class="no">bestille time</span> = book an appointment</li><li><span class="no">Jeg har vondt i …</span> = My … hurts</li></ul>`,
+ex:[
+sp("Unnskyld, hvordan kommer jeg til jernbanestasjonen?","Excuse me, how do I get to the railway station?","“Unnskyld” opens almost any question to a stranger."),
+sp("Gå rett fram og ta til venstre ved lyskrysset.","Go straight ahead and turn left at the traffic lights.",""),
+sp("Jeg vil gjerne bestille time hos legen.","I would like to book an appointment with the doctor.","“vil gjerne” is a polite “would like”."),
+sp("Jeg har hatt vondt i hodet i tre dager.","I have had a headache for three days.",""),
+mc("“Ta til høyre” means…",["Turn right","Turn left","Go straight on"],"høyre = right, venstre = left."),
+mc("How do you say “My back hurts”?",["Jeg har vondt i ryggen.","Jeg er vondt i ryggen.","Ryggen min har vondt."],"The pattern is: Jeg har vondt i + body part.")
+]}
+],
+skrive:[
+{title:"En melding om helgen",en:"A message about your weekend",
+intro:`<p>Write a message to a friend about last weekend. Use the <b>past tense</b> and remember <b>V2</b> word order when you start with a time word.</p>
+<p>Structure: greeting → what you did → how it was → goodbye (<span class="no">Snakkes! / Hilsen …</span>).</p>`,
+ex:[
+fl("Jeg ___ en ny jakke i går. (kjøpe)","kjøpte","kjøpe → kjøpte."),
+od("Build: On Saturday we went to Fløyen.",["På lørdag","gikk","vi","til","Fløyen"],"Time first, verb second.",["Vi gikk til Fløyen på lørdag"]),
+mc("Which sentence is correct?",["Etter middag så vi en film.","Etter middag vi så en film.","Etter middag så en film vi."],"V2 again: verb in second place."),
+wr("Write 5–7 sentences to a friend about what you did last weekend.",40,["i helgen","var","gikk","dro"],
+`Hei Marte!
+Hvordan har du det? I helgen dro jeg til Bergen med en venn. Vi tok toget fra Oslo, og turen var veldig fin. På lørdag gikk vi opp på Fløyen. Det regnet litt, men utsikten var flott. Om kvelden spiste vi fiskesuppe på en restaurant. På søndag var jeg sliten, så jeg slappet av hjemme.
+Snakkes snart!
+Hilsen Sam`)
+]},
+{title:"En invitasjon",en:"An invitation",
+intro:`<p>Write an invitation to your birthday party. Include <b>what, when, where</b> and ask people to reply.</p>
+<ul><li><span class="no">Jeg inviterer deg til …</span></li><li><span class="no">Festen begynner klokka 19.</span></li><li><span class="no">Gi beskjed innen fredag om du kan komme.</span></li></ul>`,
+ex:[
+fl("Festen begynner ___ 19. (at seven pm)",["klokka","kl.","klokken","kl"],"klokka / kl. + time."),
+mc("A natural way to ask for a reply:",["Gi beskjed om du kan komme!","Du må komme.","Svar nå."],"Gi beskjed = let me know."),
+mc("“Ta med drikke selv” on an invitation means…",["Bring your own drinks","Drinks are included","No drinks allowed"],"Common at Norwegian parties."),
+wr("Write an invitation to your birthday party (day, time, place, what you will do, ask for a reply).",35,["inviterer","lørdag","klokka","beskjed"],
+`Hei alle sammen!
+Jeg fyller 30 år og inviterer dere til fest lørdag 12. april. Festen begynner klokka 19 hjemme hos meg i Kirkegata 5. Vi skal spise taco og spille spill, og kanskje danse litt. Ta gjerne med drikke selv.
+Gi beskjed innen onsdag om du kan komme!
+Hilsen Amir`)
+]}
+],
+kultur:[
+{title:"Hverdagen i Norge",en:"Everyday life in Norway",
+intro:`<p>Small things that make daily life in Norway easier to understand.</p><ul>
+<li><b>Matpakke</b>: a packed lunch of open sandwiches, often in paper.</li>
+<li><b>Brunost</b>: sweet brown cheese, on bread or waffles.</li>
+<li><b>Vinmonopolet</b>: the state shop for wine and spirits. Supermarkets only sell beer, and not late in the evening.</li>
+<li>Most shops are <b>closed on Sundays</b>.</li>
+<li><b>Takk for maten</b> after a meal, <b>Takk for sist</b> when you meet someone you saw last time.</li></ul>`,
+ex:[
+mc("What is a “matpakke”?",["A packed lunch of open sandwiches","A takeaway meal","A box of groceries"],"Most Norwegians bring a matpakke to work and school."),
+mc("Where do you buy a bottle of wine?",["Vinmonopolet","Any supermarket","A kiosk"],"Wine and spirits are sold only at Vinmonopolet."),
+mc("You want to go grocery shopping on Sunday. What usually happens?",["Most shops are closed","Everything is open as normal","Shops open at noon"],"Only some small grocery shops are allowed to open."),
+mc("When do you say “Takk for sist”?",["When you meet someone again after last time","When you leave a party","When someone gives you a gift"],"It thanks them for the last time you were together."),
+mc("What is brunost?",["A sweet brown cheese","A type of bread","A fish dish"],"Try it on fresh waffles.")
+]},
+{title:"Høytider og årstider",en:"Holidays and seasons",
+intro:`<ul><li><b>17. mai</b>: Constitution Day. Children's parades, flags, bunad, ice cream.</li>
+<li><b>Påske</b>: Easter. Many go to the mountains, ski, eat oranges and Kvikk Lunsj, and read crime novels (<i>påskekrim</i>).</li>
+<li><b>Sankthans</b> (23 June): midsummer eve with bonfires.</li>
+<li><b>Fellesferie</b>: July, when many workplaces close or slow down.</li>
+<li><b>Jul</b>: Christmas is celebrated on the evening of 24 December.</li></ul>`,
+ex:[
+mc("What is celebrated on 17 May?",["Constitution Day","Christmas","Midsummer"],"Grunnlovsdagen, with children's parades."),
+mc("When do Norwegians open Christmas presents?",["The evening of 24 December","The morning of 25 December","On 6 January"],"Julaften is the main day."),
+mc("What is “påskekrim”?",["Crime stories read and watched at Easter","An Easter dessert","A ski race"],"A unique Norwegian tradition."),
+mc("“Fellesferie” is…",["The common summer holiday in July","A public holiday in May","School autumn break"],"Expect slow replies from offices in July."),
+mc("What happens on Sankthansaften?",["Bonfires on midsummer eve","Fireworks at midnight","A big parade"],"Celebrated on 23 June.")
+]}
+]
+},
+/* ================= B1 ================= */
+B1:{
+gram:[
+{title:"Adjektiver og dobbel bestemmelse",en:"Adjectives and double definiteness",
+intro:`<p>Adjectives agree with the noun:</p>
+<table class="t"><tr><th></th><th>en (m/f)</th><th>et (n)</th><th>plural / definite</th></tr>
+<tr><td>stor</td><td>en stor bil</td><td>et stor<b>t</b> hus</td><td>store biler</td></tr>
+<tr><td>liten</td><td>en liten bil</td><td>et lite hus</td><td>små biler</td></tr></table>
+<p><b>Definite form</b> uses <i>den / det / de</i> + adjective with <b>-e</b> + noun with ending. This is called double definiteness:</p>
+<p class="no">den store bilen · det store huset · de store bilene</p>`,
+ex:[
+fl("et ___ hus (stor)","stort","Neuter (et) adds -t."),
+fl("den ___ bilen (rød)","røde","Definite form: adjective + -e."),
+mc("“the new house”",["det nye huset","det nytt hus","nye huset"],"Double definiteness: det + nye + huset."),
+fl("to ___ katter (liten)","små","liten is irregular: små in plural."),
+mc("Hun har en ___ jakke.",["blå","blått","blåe"],"blå: en blå, et blått, blå (plural)."),
+od("Build: The old car is red.",["Den","gamle","bilen","er","rød"],"den + gamle + bilen.")
+]},
+{title:"Leddsetninger og sin/hans",en:"Subordinate clauses and sin / hans",
+intro:`<p>In a <b>subordinate clause</b> (after <i>at, fordi, når, hvis, som, om</i>) <b>ikke</b> and other adverbs go <b>before</b> the verb:</p>
+<p class="no">Jeg vet at han <b>ikke kommer</b>. · Hun er sliten fordi hun <b>alltid jobber</b> sent.</p>
+<p><b>sin / si / sitt / sine</b> refer back to the subject of the same clause. <b>hans / hennes</b> refer to someone else:</p>
+<p class="no">Per tar bilen <b>sin</b>. (his own) · Per tar bilen <b>hans</b>. (another man's)</p>`,
+ex:[
+mc("Choose the correct sentence.",["Jeg sier at jeg ikke har tid.","Jeg sier at jeg har ikke tid.","Jeg sier at ikke jeg har tid."],"Subordinate clause: ikke before the verb."),
+mc("Han blir hjemme fordi …",["han ikke føler seg bra","han føler seg ikke bra","ikke han føler seg bra"],"After fordi: ikke + verb."),
+mc("Kari besøker moren ___ (her own mother).",["sin","hennes","seg"],"Refers back to the subject Kari, so sin."),
+mc("Ola liker Kari, men han liker ikke broren ___ (Kari's brother).",["hennes","sin","sitt"],"Not the subject's own brother, so hennes."),
+fl("Barna leker med lekene ___ (their own).","sine","Plural: sine."),
+od("Build: I know that she often travels.",["Jeg","vet","at","hun","ofte","reiser"],"ofte goes before the verb in the at-clause.")
+]}
+],
+uttale:[
+{title:"Tonelag og trykk",en:"Pitch accent and stress",
+intro:`<p>Norwegian is “sing-song” because of two <b>tonelag</b> (pitch accents). Some word pairs differ only in melody:</p>
+<table class="t"><tr><th>Tone 1 (single fall)</th><th>Tone 2 (double, singing)</th></tr>
+<tr><td>bønder (farmers)</td><td>bønner (beans)</td></tr>
+<tr><td>tanken (the tank)</td><td>tanken (the thought)</td></tr></table>
+<p>Most one-syllable words have tone 1, and most two-syllable native words have tone 2 (<span class="no">gate, jente, snakke</span>). Stress is usually on the <b>first syllable</b>, but many loanwords stress the last: <span class="no">universitet, butikk, restaurant</span>.</p>`,
+ex:[
+mc("Where is the stress in “jente”?",["First syllable: JEN-te","Second syllable: jen-TE","Both equally"],"Native words stress the first syllable."),
+mc("Where is the stress in “universitet”?",["Last syllable: -TET","First syllable: U-","Middle: -VER-"],"Loanwords often stress the end."),
+mc("What makes “bønder” and “bønner” sound different?",["The melody (tonelag)","Long vs short vowel","A silent letter"],"They are a classic tone 1 / tone 2 pair."),
+mc("Most two-syllable native words like “gate” have…",["Tone 2","Tone 1","No tone"],"The singing melody is typical for words like jente, gate, kake."),
+sp("Jenta går i gata med kaka.","The girl walks in the street with the cake.","Practise the tone 2 melody in each word."),
+sp("Vi møtes ved butikken i morgen.","We meet at the shop tomorrow.","butikk: stress on -tikk.")
+]},
+{title:"Svake former og flyt",en:"Weak forms and flow",
+intro:`<p>In normal speech, small words are reduced and glued together. Recognising this is the key to understanding real Norwegians.</p>
+<ul><li><span class="no">jeg</span> → “je” / “jæ”, <span class="no">det</span> → “de”</li>
+<li><span class="no">ikke</span> → “'kke”: <i>har ikke</i> → “har'ke”</li>
+<li><span class="no">skal / vil</span> → “ska / vi”: <i>Skal vi gå?</i> → “ska'vi gå?”</li>
+<li><span class="no">Hva er det?</span> → “va'e de?”</li></ul>`,
+ex:[
+mc("“Je ha'kke tid.” means…",["Jeg har ikke tid.","Jeg hadde tid.","Jeg har tid."],"ikke is reduced to 'kke."),
+mc("“Ska'vi gå?” means…",["Skal vi gå?","Vil du gå?","Kan vi gå?"],"skal loses its l in speech."),
+mc("“Va'e de?” means…",["Hva er det?","Hvor er det?","Hvem er det?"],"hva er det, glued together."),
+ls("Jeg har ikke tid i dag.",["Jeg har ikke tid i dag.","Jeg hadde tid i dag.","Jeg har tid i dag."],"Listen for the short “'kke”."),
+sp("Skal vi ta en kaffe etterpå?","Shall we grab a coffee afterwards?","Try saying “ska'vi”."),
+sp("Jeg vet ikke hva det er.","I don't know what it is.","Glue it: “je veit'ke va de e”.")
+]}
+],
+lese:[
+{title:"Dugnad i borettslaget",en:"Community work day",
+text:`Kjære beboere!
+Lørdag 26. april kl. 10–14 blir det vårdugnad i borettslaget. Vi skal rake løv, vaske fellesarealene og male benkene ved lekeplassen. Styret sørger for kaffe, vafler og pølser til alle som deltar.
+Hvis du ikke har mulighet til å delta, gi beskjed til styret innen 20. april. Husk at det er bra for fellesskapet når så mange som mulig deltar.
+Hilsen styret`,
+intro:`<p><b>Dugnad</b> is unpaid work that neighbours, parents or club members do together. Notices like this are very common.</p><p>Useful: <span class="no">beboere</span> = residents, <span class="no">styret</span> = the board, <span class="no">fellesarealene</span> = shared areas.</p>`,
+ex:[
+mc("What is the notice about?",["A shared work day for residents","A board meeting","A party for children"],"vårdugnad = spring work day."),
+mc("What will the board provide?",["Coffee, waffles and sausages","Money","Tools only"],"“Styret sørger for kaffe, vafler og pølser.”"),
+mc("What should you do if you can't come?",["Tell the board by 20 April","Pay a fine","Find someone to replace you"],"“gi beskjed til styret innen 20. april”"),
+fl("What will they paint? The ___ by the playground.",["benkene","benches"],"“male benkene ved lekeplassen”"),
+mc("What does “dugnad” mean?",["Voluntary shared work","Paid overtime","A neighbourhood party"],"A core part of Norwegian community life.")
+]},
+{title:"En stillingsannonse",en:"A job advert",
+text:`Butikkmedarbeider – 60 % stilling
+Vi søker en blid og serviceinnstilt medarbeider til butikken vår i sentrum. Arbeidstiden er hovedsakelig ettermiddag og annenhver lørdag.
+Krav: Gode norskkunnskaper, muntlig og skriftlig.
+Det er en fordel om du har erfaring fra varehandel, men det er ikke et krav.
+Vi tilbyr et godt arbeidsmiljø, opplæring og personalrabatt.
+Søknadsfrist: 1. mars.`,
+intro:`<p>Job adverts follow a fixed pattern: <span class="no">Vi søker</span> (we are looking for), <span class="no">Krav</span> (requirements), <span class="no">Vi tilbyr</span> (we offer), <span class="no">Søknadsfrist</span> (deadline).</p>`,
+ex:[
+mc("What does “60 % stilling” mean?",["A part-time job, 60 % of full time","A job with 60 % salary","A 60-day job"],"Norwegian jobs are often described as a percentage."),
+mc("When do you mostly work?",["Afternoons and every other Saturday","Mornings only","Nights"],"annenhver = every other."),
+mc("Is retail experience required?",["No, it is an advantage","Yes, it is required","It is not mentioned"],"“en fordel … men det er ikke et krav”"),
+mc("What is a requirement?",["Good spoken and written Norwegian","A driving licence","A university degree"],"Krav: gode norskkunnskaper."),
+fl("The deadline is 1. ___ (month in Norwegian).","mars","Søknadsfrist: 1. mars.")
+]}
+],
+snakke:[
+{title:"Meninger",en:"Giving opinions",
+intro:`<p>Three verbs that are easy to mix up:</p><ul>
+<li><b>synes</b>: an opinion from experience. <span class="no">Jeg synes filmen var bra.</span></li>
+<li><b>tror</b>: something you believe but don't know. <span class="no">Jeg tror det blir regn.</span></li>
+<li><b>tenker</b>: thinking as a mental activity. <span class="no">Jeg tenker på deg.</span></li></ul>
+<p>Also useful: <span class="no">Det kommer an på …</span> (it depends on), <span class="no">Jeg er enig / uenig</span>.</p>`,
+ex:[
+mc("Jeg så filmen i går. Jeg ___ den var kjedelig.",["synes","tror","tenker"],"You saw it, so it's an opinion from experience: synes."),
+mc("Jeg ___ det blir regn i morgen.",["tror","synes","tenker"],"You don't know yet: tror."),
+sp("Jeg synes det er fint å bo her, men vinteren er lang.","I think it's nice living here, but the winter is long.",""),
+sp("Det kommer an på været.","It depends on the weather.",""),
+sp("Jeg er helt enig med deg.","I completely agree with you.",""),
+sp("I sommer skal jeg besøke familien min, og så skal vi kanskje reise til Lofoten.","This summer I'm visiting my family, and then we might go to Lofoten.","Answer to: Hva skal du gjøre i sommerferien?")
+]},
+{title:"På telefonen",en:"On the phone",
+intro:`<p>Norwegians often answer the phone with their name: <span class="no">Hei, det er Anna.</span> When you call, say who you are and why you're calling.</p>
+<ul><li><span class="no">Jeg ringer angående …</span> = I'm calling about …</li><li><span class="no">Kan du gjenta det?</span> = Can you repeat that?</li><li><span class="no">Kan jeg legge igjen en beskjed?</span> = Can I leave a message?</li></ul>`,
+ex:[
+sp("Hei, det er Anna som ringer. Jeg ringer angående leiligheten.","Hi, it's Anna calling. I'm calling about the flat.",""),
+sp("Unnskyld, kan du snakke litt saktere?","Sorry, can you speak a bit more slowly?",""),
+sp("Kan jeg legge igjen en beskjed?","Can I leave a message?",""),
+mc("You didn't catch a phone number. You say:",["Kan du gjenta det?","Hva sier du nå da?","Jeg forstår ingenting."],"Polite and clear."),
+mc("How do many Norwegians answer their phone?",["By saying their name","With “Hallo, hvem er det?”","They wait for you to speak"],"For example: “Hei, det er Lars.”")
+]}
+],
+skrive:[
+{title:"E-post til utleier",en:"An email to your landlord",
+intro:`<p>Even formal emails in Norway are quite direct and friendly. You can start with <b>Hei</b> + first name.</p>
+<p>Structure: <b>why you write</b> (<span class="no">Jeg skriver fordi …</span>) → <b>details</b> → <b>what you want</b> (<span class="no">Kan du …?</span>) → <b>sign-off</b> (<span class="no">Med vennlig hilsen</span>).</p>`,
+ex:[
+fl("Med ___ hilsen (formal sign-off)","vennlig","Med vennlig hilsen = kind regards."),
+mc("A normal opening for an email to your landlord Per:",["Hei Per,","Kjære herr Per,","Til den det måtte angå,"],"Norway is informal. “Hei” + name is standard."),
+mc("Which sentence states your request clearly?",["Kan du sende en reparatør så snart som mulig?","Kanskje noen kan se på det en gang.","Jeg vet ikke hva jeg skal gjøre."],"Be polite and direct."),
+wr("The washing machine in your flat is broken. Write an email to your landlord: explain the problem, what you've tried, and ask for help.",60,["skriver fordi","Kan du","Med vennlig hilsen"],
+`Hei Per,
+Jeg skriver fordi vaskemaskinen i leiligheten har sluttet å virke. Den startet ikke i går kveld, og det kommer vann ut på gulvet når jeg prøver igjen. Jeg har sjekket at kontakten står i, og at kranen er åpen.
+Kan du sende en reparatør så snart som mulig? Jeg er hjemme etter klokka 16 på hverdager og hele dagen på lørdag. Gi meg gjerne beskjed om hvilken dag som passer.
+Med vennlig hilsen
+Lina Ahmed`)
+]},
+{title:"Tradisjoner før og nå",en:"Compare traditions",
+intro:`<p>Write about a tradition from your home country and compare it with Norway. Use comparing words:</p>
+<ul><li><span class="no">mens</span> = while, whereas</li><li><span class="no">i motsetning til</span> = unlike</li><li><span class="no">på samme måte som</span> = in the same way as</li><li><span class="no">derimot</span> = on the other hand</li></ul>`,
+ex:[
+mc("Choose the best connector: “I Norge spiser vi middag klokka fem, ___ i Spania spiser de mye senere.”",["mens","fordi","hvis"],"mens contrasts two facts."),
+fl("I ___ til Norge er det varmt hele året i Brasil. (unlike)","motsetning","i motsetning til = unlike."),
+wr("Describe a holiday or tradition from your country and compare it with a Norwegian one.",70,["mens","i motsetning til","I Norge"],
+`I India feirer vi Diwali, lysfesten, om høsten. Vi tenner lys og lamper, spiser søtsaker og besøker familie og venner. Mange kjøper også nye klær.
+I Norge er julen den største høytiden. På samme måte som Diwali handler julen om lys, god mat og familie. Mens vi feirer med fyrverkeri og farger, er julen i Norge roligere, og mange er hjemme med de nærmeste.
+I motsetning til Diwali, som varer i flere dager, er julaften den viktigste kvelden i Norge. Jeg liker begge tradisjonene, og nå feirer familien min både Diwali og jul.`)
+]}
+],
+kultur:[
+{title:"Arbeidslivet",en:"Working life",
+intro:`<ul><li><b>Flat structure</b>: you call your manager by first name and are expected to share your opinion.</li>
+<li><b>Lunch</b> is early (often 11–11.30) and short, usually a matpakke in the canteen.</li>
+<li>Many leave around <b>16.00</b>, and family time is respected.</li>
+<li><b>Janteloven</b>: an unwritten rule against bragging or thinking you're better than others.</li>
+<li><b>Allemannsretten</b>: the right to walk, ski and camp in uncultivated nature.</li></ul>`,
+ex:[
+mc("How do you usually address your manager?",["By first name","Herr/fru + surname","By job title"],"Norwegian workplaces are flat."),
+mc("When is lunch typically eaten at work?",["Around 11–11.30","At 13–14","At 15"],"Early and short."),
+mc("What is “Janteloven”?",["A norm against bragging","A law about working hours","A rule for queuing"],"From Aksel Sandemose's 1933 novel."),
+mc("Allemannsretten lets you…",["Hike and camp in uncultivated nature","Fish anywhere without a licence","Pick fruit from private gardens"],"Camping is allowed at least 150 m from houses."),
+mc("In a meeting your manager asks for opinions. You…",["Share your view, even if it differs","Stay quiet out of respect","Wait until you are alone with the manager"],"Input is expected from everyone.")
+]},
+{title:"Venner og sosiale koder",en:"Friends and social codes",
+intro:`<ul><li>Norwegians can seem reserved at first, but friendships often come through <b>activities</b>: sports clubs, choirs, dugnad.</li>
+<li>Take your <b>shoes off</b> indoors.</li><li>Be <b>on time</b>. Ten minutes late is late.</li>
+<li><b>Spleise</b>: splitting the bill is normal, often paid with an app.</li>
+<li><b>Julebord</b>: the Christmas party with colleagues in November/December.</li></ul>`,
+ex:[
+mc("You are invited to a friend's home. At the door you…",["Take your shoes off","Keep your shoes on","Ask for slippers"],"Shoes off is the norm."),
+mc("“Skal vi spleise?” means…",["Shall we split the bill?","Shall we go home?","Shall we order more?"],"Very common among friends."),
+mc("What is the best way to make Norwegian friends?",["Join a club or activity","Talk to strangers on the bus","Wait to be invited home"],"Friendships grow through shared activities."),
+mc("What is a “julebord”?",["A Christmas party with colleagues","A Christmas tree","A Christmas market"],"Often a big dinner in November or December."),
+mc("A dinner invitation says 18.00. You arrive…",["Around 18.00","At 18.45","Whenever you like"],"Punctuality matters.")
+]}
+]
+},
+/* ================= B2 ================= */
+B2:{
+gram:[
+{title:"Passiv og som",en:"Passive voice and “som”",
+intro:`<p><b>Bli-passive</b> for single events: <span class="no">Huset <b>ble bygd</b> i 1920.</span> <span class="no">Sykkelen <b>ble stjålet</b>.</span></p>
+<p><b>S-passive</b> after modal verbs and for rules: <span class="no">Billetter <b>må kjøpes</b> på forhånd.</span> <span class="no">Her <b>selges</b> fisk.</span></p>
+<p>Perfect passive: <span class="no">Det <b>har blitt</b> sagt at …</span></p>
+<p><b>som</b> can be left out when it is the object of the clause: <span class="no">Boka (som) jeg leser</span>, but not when it is the subject: <span class="no">Mannen <b>som</b> bor her</span>.</p>`,
+ex:[
+mc("Rewrite: “Noen stjal sykkelen min.”",["Sykkelen min ble stjålet.","Sykkelen min stjal.","Sykkelen min har stjele."],"bli + past participle."),
+fl("Søknaden må ___ innen fredag. (sende, s-passive)","sendes","After må: s-passive, sendes."),
+fl("Det har ___ sagt mye om saken.","blitt","har + blitt + participle."),
+mc("In which sentence can “som” be left out?",["Filmen som vi så, var lang.","Kvinnen som jobber her, er snill.","Bussen som går klokka åtte, er full."],"som is the object here (vi så filmen)."),
+mc("Which is a typical sign?",["Røyking forbudt. Hunder må holdes i bånd.","Røyking forbudt. Hunder må holde i bånd.","Hunder blir holde i bånd."],"Rules use the s-passive: holdes."),
+od("Build: The house was built in 1920.",["Huset","ble","bygd","i","1920"],"bli-passive for a single event.",["I 1920 ble huset bygd"])
+]},
+{title:"Bindeord",en:"Connectors",
+intro:`<table class="t"><tr><th>Meaning</th><th>Connector</th><th>Word order after</th></tr>
+<tr><td>because</td><td>fordi, ettersom</td><td>subordinate (ikke before verb)</td></tr>
+<tr><td>because of</td><td>på grunn av + noun</td><td>—</td></tr>
+<tr><td>even though</td><td>selv om</td><td>subordinate</td></tr>
+<tr><td>therefore</td><td>derfor</td><td>inverted: <i>Derfor <b>gikk</b> vi</i></td></tr>
+<tr><td>still, anyway</td><td>likevel</td><td>inverted</td></tr>
+<tr><td>moreover</td><td>dessuten</td><td>inverted</td></tr>
+<tr><td>on the other hand</td><td>derimot</td><td>adverb</td></tr></table>`,
+ex:[
+fl("Det regnet hele dagen. ___ ble vi hjemme. (therefore)","Derfor","Derfor + verb + subject."),
+mc("Det regnet hele dagen. ___ gikk vi på tur.",["Likevel","Derfor","Fordi"],"A surprising result: likevel."),
+mc("Toget var forsinket ___ snøen.",["på grunn av","fordi","selv om"],"Before a noun: på grunn av."),
+mc("Choose the correct order:",["Selv om han ikke har tid, hjelper han oss.","Selv om han har ikke tid, han hjelper oss.","Selv om han ikke har tid, han hjelper oss."],"Subordinate clause first, then V2 in the main clause."),
+fl("Leiligheten er stor. ___ ligger den sentralt. (moreover)","Dessuten","Dessuten adds a new argument."),
+od("Build: Therefore we took the bus.",["Derfor","tok","vi","bussen"],"Inversion after derfor.")
+]}
+],
+uttale:[
+{title:"R-lyden og retroflekser",en:"The r-sound and retroflex sounds",
+intro:`<p>In Eastern Norwegian (Oslo) an <b>r</b> merges with a following consonant:</p>
+<ul><li><b>rs</b> → “sh”: <span class="no">norsk</span> ≈ “nosjk”, <span class="no">værsågod</span></li>
+<li><b>rt, rd, rn, rl</b> → tongue curled back: <span class="no">kort, ferdig, barn, Karl</span></li></ul>
+<p>The <b>r</b> itself is rolled in the east and north, but uvular (like French/German, called <i>skarre-r</i>) in much of the west and south: Bergen, Stavanger, Kristiansand.</p>`,
+ex:[
+mc("In Oslo, “rs” in “norsk” sounds like…",["sh","r + s clearly","z"],"rs merges into a “sh” sound."),
+mc("Where is the uvular “skarre-r” typical?",["Bergen and the south-west","Oslo","Tromsø"],"Western and southern coast."),
+mc("Which word has a retroflex sound in Eastern Norwegian?",["barn","bane","bok"],"rn merges in barn."),
+ls("Jeg snakker norsk hver dag.",["Jeg snakker norsk hver dag.","Jeg snakket norsk i går.","Jeg skal snakke norsk."],"Listen for “nosjk”."),
+sp("Barna sitter på gulvet og tegner kort.","The children sit on the floor drawing cards.","rn in barna, rt in kort."),
+sp("Værsågod, maten er ferdig!","Here you go, food's ready!","rs in værsågod, rd in ferdig.")
+]},
+{title:"Dialekter",en:"Dialects",
+intro:`<p>Dialects are used everywhere, also on TV and at work. You don't need to speak them, but you need to understand them.</p>
+<table class="t"><tr><th>Bokmål</th><th>West</th><th>Trøndelag / North</th></tr>
+<tr><td>jeg</td><td>eg</td><td>æ</td></tr>
+<tr><td>ikke</td><td>ikkje</td><td>itj / ikkje</td></tr>
+<tr><td>hva</td><td>ka / kva</td><td>ka</td></tr>
+<tr><td>hvor</td><td>kor</td><td>kor</td></tr></table>`,
+ex:[
+mc("“Æ e itj sikker.” means…",["Jeg er ikke sikker.","Jeg er sikker.","Er du sikker?"],"Trøndersk: æ = jeg, itj = ikke."),
+mc("“Eg veit ikkje kva eg skal gjere.” means…",["Jeg vet ikke hva jeg skal gjøre.","Jeg vet hva du skal gjøre.","Hvem skal gjøre det?"],"Western: eg, ikkje, kva."),
+mc("“Kor e du fra?” means…",["Hvor er du fra?","Hvem er du?","Hva er det?"],"kor = hvor."),
+mc("“Ka du driv me?” means…",["Hva driver du med?","Hvor kjører du?","Hvem driver her?"],"What are you up to?"),
+mc("Which form of “jeg” is typical in Trøndelag?",["æ","eg","jæ"],"Also common in the north.")
+]}
+],
+lese:[
+{title:"Elbilens triumf",en:"The electric car boom",
+text:`Elbilens triumf – og bakside
+Norge er landet i verden med den høyeste andelen elbiler. I 2024 var nesten ni av ti nye personbiler som ble solgt, helelektriske. Forklaringen er først og fremst politisk: I mange år har elbiler vært fritatt for de store avgiftene som legges på bensin- og dieselbiler, og eierne har fått rabatt i bomringer og på ferger.
+Suksessen har imidlertid hatt en pris. Staten har gått glipp av milliarder i avgiftsinntekter, og kritikere mener at ordningen først og fremst har kommet de mest velstående til gode. I tillegg har elbilene ført til mer trafikk i byene, fordi mange har valgt bilen framfor kollektivtransport. Derfor har politikerne de siste årene gradvis innført moms og avgifter også på elbiler.`,
+intro:`<p>A news-style text. Notice how the writer moves from facts to criticism with <span class="no">imidlertid</span> (however) and <span class="no">i tillegg</span> (in addition).</p>`,
+ex:[
+mc("What is the main explanation for the many electric cars?",["Political incentives like tax exemptions","Norwegians love technology","Petrol is not sold"],"“Forklaringen er først og fremst politisk.”"),
+mc("“imidlertid” means…",["however","immediately","in addition"],"A formal “men”."),
+mc("What do critics say?",["The scheme mostly benefited wealthier people","Electric cars are unsafe","There are too few chargers"],"“har kommet de mest velstående til gode”"),
+mc("Why has city traffic increased?",["People chose cars over public transport","More tourists","Cheaper petrol"],"“valgt bilen framfor kollektivtransport”"),
+fl("“avgifter” are taxes or ___. (English)",["fees","charges","duties"],"avgift = tax, fee, charge.")
+]},
+{title:"Språk i endring",en:"A changing language",
+text:`Språket vårt endrer seg raskere enn før, hevder mange. Engelske ord som «deadline», «chill» og «nice» har for lengst funnet veien inn i dagligtalen, og på sosiale medier blander unge norsk og engelsk uten å blunke. Bekymrede røster advarer mot at norsk kan bli et «kjøkkenspråk» som bare brukes hjemme, mens viktige samtaler foregår på engelsk.
+Språkforskere er imidlertid mer avslappet. De påpeker at norsk alltid har lånt ord, fra nedertysk i middelalderen og fra dansk i århundrene etter. Det avgjørende, sier de, er ikke om vi låner ord, men om norsk fortsatt brukes på alle samfunnsområder. Det er nettopp her utfordringen ligger: I deler av næringslivet og akademia er engelsk blitt arbeidsspråket.`,
+intro:`<p>An opinion piece. Focus on the <b>argument</b>: what is the worry, and what do the experts say the real problem is?</p>`,
+ex:[
+mc("What is a “kjøkkenspråk” in this text?",["A language only used at home","A language for cooking","A secret language"],"Used only in the kitchen, not in important areas."),
+mc("How do language researchers see English loanwords?",["Not a big problem, Norwegian has always borrowed","A serious threat","Something to ban"],"“Språkforskere er imidlertid mer avslappet.”"),
+mc("According to the researchers, what is the real challenge?",["English replacing Norwegian in work and academia","Young people's slang","Danish influence"],"“I deler av næringslivet og akademia er engelsk blitt arbeidsspråket.”"),
+fl("In the Middle Ages, Norwegian borrowed from ___ (language in Norwegian).","nedertysk","Low German, through the Hanseatic trade."),
+mc("“uten å blunke” means…",["without hesitation","without thinking about meaning","without speaking"],"Literally: without blinking.")
+]}
+],
+snakke:[
+{title:"Diskusjon",en:"Discussing and disagreeing",
+intro:`<p>In a Norwegian discussion it's fine to disagree, but stay calm and polite.</p><ul>
+<li><span class="no">På den ene siden … på den andre siden …</span></li>
+<li><span class="no">Det er et godt poeng, men …</span></li>
+<li><span class="no">Jeg forstår hva du mener, men jeg ser det annerledes.</span></li>
+<li><span class="no">Unnskyld at jeg avbryter, men …</span></li></ul>`,
+ex:[
+mc("Which is the most polite way to disagree?",["Jeg forstår hva du mener, men jeg ser det litt annerledes.","Det er feil.","Du tar feil, rett og slett."],"Acknowledge first, then disagree."),
+mc("You need to interrupt politely:",["Unnskyld at jeg avbryter, men …","Stopp, nå er det meg.","Hør her!"],""),
+sp("På den ene siden er det dyrt, men på den andre siden sparer vi tid.","On the one hand it's expensive, but on the other we save time.",""),
+sp("Det er et godt poeng, men har du tenkt på kostnadene?","Good point, but have you considered the costs?",""),
+sp("Etter min mening bør butikkene holde stengt på søndager, fordi folk trenger en fridag.","In my opinion shops should stay closed on Sundays, because people need a day off.","Now continue for one minute on your own: give one more argument and a counter-argument.")
+]},
+{title:"Presentasjon",en:"Giving a short talk",
+intro:`<p>Structure a 2-minute talk:</p><ul>
+<li><b>Start:</b> <span class="no">I dag skal jeg snakke om …</span></li>
+<li><b>Order:</b> <span class="no">For det første … For det andre … Til slutt …</span></li>
+<li><b>Soften claims:</b> <span class="no">Det kan tyde på at …</span>, <span class="no">Mange mener at …</span></li>
+<li><b>End:</b> <span class="no">Avslutningsvis vil jeg si at …</span></li></ul>`,
+ex:[
+mc("Which phrase softens a claim?",["Det kan tyde på at …","Det er helt sikkert at …","Alle vet at …"],"Hedging sounds more convincing at B2."),
+mc("“Avslutningsvis” is used…",["To conclude","To start","To give an example"],"Avslutningsvis = in conclusion."),
+sp("I dag skal jeg snakke om hvorfor friluftsliv er så viktig i Norge.","Today I will talk about why outdoor life is so important in Norway.",""),
+sp("For det første er naturen lett tilgjengelig. For det andre er det gratis.","Firstly, nature is easily accessible. Secondly, it's free.",""),
+sp("Avslutningsvis vil jeg si at friluftsliv er en del av den norske identiteten.","To conclude, outdoor life is part of the Norwegian identity.","Now give the whole talk in two minutes, with your own examples.")
+]}
+],
+skrive:[
+{title:"Drøftende tekst",en:"An argumentative text",
+intro:`<p>A <b>drøftende tekst</b> looks at both sides before concluding. This is the text type in the Norwegian B2 written exam.</p>
+<p>Structure: <b>introduction</b> (the question) → <b>arguments for</b> → <b>arguments against</b> → <b>conclusion</b> (your view). Use <span class="no">dessuten, derimot, likevel, derfor</span>.</p>`,
+ex:[
+mc("What should the introduction do?",["Present the question being discussed","Give your final opinion","List all arguments"],""),
+mc("Which connector introduces a counter-argument?",["På den andre siden","Dessuten","For eksempel"],""),
+wr("Should Norway introduce a four-day work week? Write an argumentative text with arguments for and against, and your conclusion.",120,["På den ene siden","Dessuten","På den andre siden","Derfor"],
+`Bør vi innføre fire dagers arbeidsuke?
+De siste årene har flere bedrifter testet fire dagers arbeidsuke. Spørsmålet er om dette er en god idé for hele samfunnet.
+På den ene siden kan en kortere uke gi bedre helse og mer tid til familie og fritid. Dessuten viser noen forsøk at de ansatte blir mer effektive når de har færre arbeidsdager.
+På den andre siden passer ordningen dårlig for yrker der noen må være til stede hele tiden, for eksempel i helsevesenet. Det kan også bli dyrt for arbeidsgiverne hvis de må ansette flere.
+Etter min mening bør bedrifter få prøve ordningen der den passer, men jeg tror ikke den bør innføres for alle. Derfor er fleksible løsninger det beste.`)
+]},
+{title:"En formell klage",en:"A formal complaint",
+intro:`<p>A complaint (<b>klage</b>) should be factual and calm. Include: what you bought and when, what went wrong, what you have done, and what you want (refund, replacement).</p>
+<ul><li><span class="no">Jeg viser til …</span> = With reference to …</li><li><span class="no">Jeg ber om at …</span> = I request that …</li><li><span class="no">Jeg ser fram til svar.</span></li></ul>`,
+ex:[
+mc("Which sentence fits a formal complaint best?",["Jeg ber om at beløpet blir refundert innen 14 dager.","Gi meg pengene mine tilbake nå!","Dere er helt håpløse."],"Calm, factual and specific."),
+fl("Jeg ___ til bestillingen min av 3. mars. (refer)","viser","Jeg viser til = with reference to."),
+wr("You ordered a sofa online. It arrived three weeks late and damaged. Write a complaint to the shop.",100,["viser til","ber om","ser fram til"],
+`Klage på forsinket og skadet levering
+Jeg viser til bestillingen min av en sofa (ordrenummer 48213) 3. mars. Ifølge bekreftelsen skulle sofaen leveres innen 10. mars, men den kom ikke før 31. mars.
+Da jeg pakket den ut, oppdaget jeg at stoffet var revet opp på den ene siden, og at ett av beina var knekt. Jeg har tatt bilder av skadene, og de ligger vedlagt.
+Jeg ber om at dere henter sofaen og leverer en ny innen to uker. Hvis dette ikke er mulig, ønsker jeg å heve kjøpet og få pengene tilbake.
+Jeg ser fram til svar.
+Med vennlig hilsen
+Jonas Berg`)
+]}
+],
+kultur:[
+{title:"Samfunnet",en:"How society works",
+intro:`<ul><li><b>NAV</b>: the Labour and Welfare Administration (unemployment benefits, sick pay, pensions).</li>
+<li><b>Fastlege</b>: your own assigned GP. You go here first.</li>
+<li><b>BankID</b>: electronic ID used for banks, taxes and public services.</li>
+<li><b>Bokmål and nynorsk</b>: two official written standards of Norwegian.</li>
+<li><b>Sámi</b> languages also have official status. The Sámi Parliament is in Karasjok.</li>
+<li>Norway is a <b>high-trust society</b>: people generally trust each other and the state.</li></ul>`,
+ex:[
+mc("You lose your job. Which office do you contact?",["NAV","Skatteetaten","Biblioteket"],"NAV handles unemployment benefits."),
+mc("You feel sick. Who do you contact first?",["Your fastlege","The hospital","A pharmacy abroad"],"The fastlege refers you on if needed."),
+mc("What is BankID used for?",["Logging in to banks and public services","Paying in shops only","Travelling abroad"],""),
+mc("How many official written standards does Norwegian have?",["Two: bokmål and nynorsk","One","Four"],"Pupils learn both at school."),
+mc("Where is the Sámi Parliament?",["Karasjok","Oslo","Bergen"],"Sametinget opened in 1989.")
+]},
+{title:"Kommunikasjonsstil",en:"Communication style",
+intro:`<ul><li><b>Understatement</b>: <span class="no">Ikke så verst</span> (“not too bad”) often means “very good”.</li>
+<li><b>Det går seg til</b>: it will sort itself out.</li>
+<li><b>Uff</b> (or uff da): mild dismay or sympathy.</li>
+<li><b>Leaving signal</b>: <span class="no">Nei, nå må jeg komme meg hjem.</span> The “Nei” starts the goodbye.</li>
+<li>Silence in a conversation is fine, and you don't have to fill it.</li></ul>`,
+ex:[
+mc("A colleague says your presentation was “ikke så verst”. They mean…",["It was quite good","It was bad","They didn't listen"],"Classic Norwegian understatement."),
+mc("Someone says “Nei, nå må jeg komme meg hjem.” They…",["Are about to leave","Are refusing something","Are angry"],"“Nei” here starts a goodbye."),
+mc("“Det går seg til” means…",["It will work out by itself","It is getting worse","Let's go"],""),
+mc("Your friend tells you she missed the bus. A natural reaction:",["Uff, så kjedelig!","Gratulerer!","Det går seg til, ha det."],"Uff shows sympathy."),
+mc("There's a short silence during a coffee break. You…",["Relax, silence is normal","Must talk immediately","Should leave"],"Comfortable silence is common.")
+]}
+]
+}
+};
+
+// Placement test: 3 items per level, in rising difficulty. First option is correct.
+const PLACEMENT=[
+{l:"A1",...mc("___ eple",["et","en","ei"],"")},
+{l:"A1",...mc("Jeg ___ fra Polen.",["kommer","kommet","å komme"],"")},
+{l:"A1",...mc("What does “Takk for maten” mean?",["Thanks for the food","Enjoy your meal","Good morning"],"")},
+{l:"A2",...mc("I går ___ jeg på kino.",["gikk","går","gå"],"")},
+{l:"A2",...mc("Choose the correct sentence.",["I morgen reiser jeg til Bergen.","I morgen jeg reiser til Bergen.","Jeg i morgen reiser til Bergen."],"")},
+{l:"A2",...mc("Jeg har ___ i Norge i tre år.",["bodd","bo","bor"],"")},
+{l:"B1",...mc("Det ___ huset er mitt.",["store","stort","stor"],"")},
+{l:"B1",...mc("Jeg vet at han ___",["ikke kommer.","kommer ikke.","ikke komme."],"")},
+{l:"B1",...mc("Jeg så filmen i går. Jeg ___ den var kjedelig.",["synes","tror","tenker"],"")},
+{l:"B2",...mc("Billettene må ___ på nett.",["kjøpes","kjøpe","kjøpt"],"")},
+{l:"B2",...mc("Det regnet hele dagen. ___ gikk vi på tur.",["Likevel","Derfor","Fordi"],"")},
+{l:"B2",...mc("“Ikke så verst” usually means…",["Quite good","Very bad","Not interested"],"")}
+];
+
+</script>
+<script>
+const LEVELS=["A1","A2","B1","B2"]; // A1 = starting point only; lessons exist for A2–B2
+const COURSE_LEVELS=["A2","B1","B2"];
+const KEY="norskveien.v1";
+const $app=document.getElementById("app");
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const today=()=>new Date().toISOString().slice(0,10);
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const norm=s=>String(s).toLowerCase().replace(/[.,!?;:«»"“”]/g,"").replace(/\s+/g," ").trim();
+
+function fresh(){return {current:null,target:null,lessons:{},tests:{},days:[],answered:0,correct:0,skillLast:{},rate:.9,lastVisit:null}}
+function load(){try{const r=localStorage.getItem(KEY);return r?Object.assign(fresh(),JSON.parse(r)):null}catch(e){return null}}
+function save(){S.updatedAt=Date.now();try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}cloudPush()}
+let S=load()||fresh();
+const prevVisit=S.lastVisit; S.lastVisit=today(); save();
+let V={view:S.target?"home":"welcome"};
+
+/* ---------- accounts (Supabase) ---------- */
+var C={status:"checking",name:"",uid:null,busy:false,again:false,timer:null,err:""};
+const CFG=window.NORSK_CONFIG||{};
+const SB=(CFG.supabaseUrl&&CFG.supabaseAnonKey&&!/YOUR/i.test(CFG.supabaseUrl)&&window.supabase)?window.supabase.createClient(CFG.supabaseUrl,CFG.supabaseAnonKey):null;
+function mergeState(a,b){ // combine two progress records, keeping the best of each
+  const n=b.updatedAt>a.updatedAt?b:a, o=n===a?b:a, m=Object.assign(fresh(),o,n);
+  m.lessons={};new Set([...Object.keys(a.lessons||{}),...Object.keys(b.lessons||{})]).forEach(k=>{const x=a.lessons?.[k],y=b.lessons?.[k];m.lessons[k]=!x?y:!y?x:{done:x.done||y.done,best:Math.max(x.best||0,y.best||0),last:(n.lessons?.[k]||x).last,at:(x.at||"")>(y.at||"")?x.at:y.at}});
+  m.tests={};new Set([...Object.keys(a.tests||{}),...Object.keys(b.tests||{})]).forEach(k=>{const x=a.tests?.[k]||{best:0},y=b.tests?.[k]||{best:0};m.tests[k]={best:Math.max(x.best,y.best),passed:!!(x.passed||y.passed)}});
+  m.days=[...new Set([...(a.days||[]),...(b.days||[])])].sort();
+  m.skillLast=Object.assign({},o.skillLast,n.skillLast);Object.keys(m.skillLast).forEach(k=>{const p=[a.skillLast?.[k]||"",b.skillLast?.[k]||""].sort();m.skillLast[k]=p[1]});
+  m.answered=Math.max(a.answered||0,b.answered||0);m.correct=Math.max(a.correct||0,b.correct||0);
+  return m;
+}
+function cloudPush(){if(!C||!C.uid)return;clearTimeout(C.timer);C.timer=setTimeout(cloudWrite,1200)}
+async function cloudWrite(){
+  if(!C.uid)return;if(C.busy){C.again=true;return}
+  C.busy=true;
+  const {error}=await SB.from("progress").upsert({user_id:C.uid,state:S,updated_at:new Date().toISOString()});
+  setCloud(error?"error":"synced");
+  C.busy=false;if(C.again){C.again=false;cloudWrite()}
+}
+function setCloud(s){C.status=s;const el=document.getElementById("acct");if(el)el.outerHTML=acctChip();if(V.view==="settings")render()}
+async function onSignedIn(u){
+  if(C.uid===u.id)return;C.uid=u.id;C.name=(u.user_metadata&&u.user_metadata.name)||u.email||"";setCloud("checking");
+  const {data,error}=await SB.from("progress").select("state").eq("user_id",u.id).maybeSingle();
+  if(error){setCloud("error");return}
+  if(data&&data.state){const remote=Object.assign(fresh(),data.state);S=S.target?mergeState(remote,S):remote;try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+  if(S.target)await cloudWrite();else setCloud("synced");
+  if(V.view==="auth"||((V.view==="welcome"||V.view==="target")&&S.target&&!V.manual))V={view:S.target?"home":"welcome"};
+  if(V.view!=="run"&&V.view!=="place")render();
+}
+async function cloudInit(){
+  if(!SB)return setCloud("local");
+  SB.auth.onAuthStateChange((ev,s)=>{if(ev==="PASSWORD_RECOVERY"){V={view:"reset"};setTimeout(render,0)}if(s&&s.user)setTimeout(()=>onSignedIn(s.user),0)});
+  const {data}=await SB.auth.getSession();
+  if(data&&data.session)onSignedIn(data.session.user);else setCloud("signedout");
+}
+function acctChip(){
+  const s=C.status;
+  if(s==="local")return `<span id="acct"></span>`;
+  if(s==="signedout")return `<button id="acct" class="btn ghost sm" data-a="auth">Logg inn</button>`;
+  const label={checking:"Loading …",synced:C.name,error:"Not synced"}[s]||"";
+  return `<button id="acct" class="acct" data-a="settings" title="${esc(s==="synced"?"Progress saved to your account":"Couldn't reach the server. Progress is saved in this browser.")}"><span class="sdot ${s==="synced"?"ok":s}"></span><span class="acct-t">${esc(label)}</span></button>`;
+}
+function vAuth(){
+  const up=V.mode==="signup";
+  return topbar()+`<div class="stack" style="gap:24px;max-width:420px">
+  <div class="stack" style="gap:8px"><h1>${up?"Lag konto":"Logg inn"}</h1><p class="muted">${up?"Create a free account so your progress is saved and follows you to any device.":"Log in to continue where you left off."}</p></div>
+  ${V.msg?`<p class="notice" style="color:var(--ink)">${esc(V.msg)}</p>`:""}
+  <form id="authForm" class="stack" style="gap:12px" novalidate>
+    ${up?`<label class="stack" style="gap:6px"><span class="small">Name</span><input class="inp" id="au-name" autocomplete="name" required></label>`:""}
+    <label class="stack" style="gap:6px"><span class="small">Email</span><input class="inp" id="au-email" type="email" autocomplete="email" required></label>
+    <label class="stack" style="gap:6px"><span class="small">Password</span><input class="inp" id="au-pass" type="password" autocomplete="${up?"new-password":"current-password"}" minlength="6" required></label>
+    ${V.err?`<p class="small" style="color:var(--bad)">${esc(V.err)}</p>`:""}
+    <button class="btn" type="submit" ${V.busy?"disabled":""}>${V.busy?"Vent litt …":up?"Create account":"Log in"}</button>
+  </form>
+  <div class="row" style="justify-content:space-between">
+    <button class="btn link sm" data-a="authMode">${up?"Have an account? Log in":"New here? Create an account"}</button>
+    ${up?"":`<button class="btn link sm" data-a="forgot">Forgot password?</button>`}
+  </div>
+  <button class="btn link sm" data-a="home" style="align-self:flex-start">Continue without an account</button></div>`;
+}
+function vReset(){return topbar()+`<div class="stack" style="gap:20px;max-width:420px"><h1>Nytt passord</h1><form id="resetForm" class="stack" style="gap:12px"><label class="stack" style="gap:6px"><span class="small">New password</span><input class="inp" id="np" type="password" autocomplete="new-password" minlength="6"></label>${V.err?`<p class="small" style="color:var(--bad)">${esc(V.err)}</p>`:""}<button class="btn" type="submit">Save password</button></form></div>`}
+async function resetSubmit(){const p=document.getElementById("np").value;if(p.length<6){V.err="At least 6 characters.";return render()}const {error}=await SB.auth.updateUser({password:p});if(error){V.err=error.message;return render()}toast("Password updated");V={view:S.target?"home":"welcome"};render()}
+async function authSubmit(){
+  const email=document.getElementById("au-email").value.trim(),pass=document.getElementById("au-pass").value,nm=document.getElementById("au-name");
+  V.err="";V.msg="";
+  if(!/^\S+@\S+\.\S+$/.test(email)){V.err="Enter a valid email address.";return render()}
+  if(pass.length<6){V.err="The password needs at least 6 characters.";return render()}
+  V.busy=true;render();
+  let r;
+  if(V.mode==="signup")r=await SB.auth.signUp({email,password:pass,options:{data:{name:nm?nm.value.trim():""},emailRedirectTo:location.origin+location.pathname}});
+  else r=await SB.auth.signInWithPassword({email,password:pass});
+  V.busy=false;
+  if(r.error){V.err=/invalid login/i.test(r.error.message)?"Wrong email or password.":/not confirmed/i.test(r.error.message)?"Confirm your email first. Check your inbox for the link.":r.error.message;return render()}
+  if(V.mode==="signup"&&!r.data.session){V.mode="signin";V.msg="Account created. Check your email and click the confirmation link, then log in.";return render()}
+}
+
+/* ---------- progress helpers ---------- */
+const lid=(L,sk,n)=>`${L}-${sk}-${n}`;
+const lessonsOf=(L,sk)=>COURSE[L][sk];
+function skillPct(L,sk){const ls=lessonsOf(L,sk);return Math.round(ls.reduce((t,_,n)=>t+(S.lessons[lid(L,sk,n)]?.best||0),0)/ls.length)}
+function levelPct(L){let t=0,c=0;SKILLS.forEach(s=>lessonsOf(L,s.id).forEach((_,n)=>{c++;t+=S.lessons[lid(L,s.id,n)]?.best||0}));c++;t+=S.tests[L]?.passed?100:0;return Math.round(t/c)}
+function path(){const a=LEVELS.indexOf(S.current),b=LEVELS.indexOf(S.target);return LEVELS.slice(a+1,b+1)}
+function working(){return path().find(L=>!S.tests[L]?.passed)||null}
+function markDay(){const d=today();if(!S.days.includes(d))S.days.push(d)}
+function streak(){let n=0,d=new Date();const has=x=>S.days.includes(x.toISOString().slice(0,10));if(!has(d))d.setDate(d.getDate()-1);while(has(d)){n++;d.setDate(d.getDate()-1)}return n}
+function daysAgo(iso){if(!iso)return null;return Math.round((new Date(today())-new Date(iso))/864e5)}
+const skillName=id=>SKILLS.find(s=>s.id===id);
+
+/* ---------- today's focus ---------- */
+function todayPlan(){
+  const L=working(); if(!L) return null;
+  const sk=SKILLS.map(s=>({s,pct:skillPct(L,s.id),last:S.skillLast[L+s.id]||""}));
+  const allDone=sk.every(x=>lessonsOf(L,x.s.id).every((_,n)=>S.lessons[lid(L,x.s.id,n)]?.done));
+  const tasks=[];
+  if(allDone){
+    tasks.push({kind:"test",L,title:`Ta nivåtesten for ${L}`,why:"You've finished every lesson at this level. Pass the test (70 %) to move on."});
+  }else{
+    sk.sort((a,b)=>a.pct-b.pct||(a.last<b.last?-1:a.last>b.last?1:0));
+    const weak=sk[0];
+    const ls=lessonsOf(L,weak.s.id);
+    let n=ls.findIndex((_,i)=>!S.lessons[lid(L,weak.s.id,i)]?.done);
+    if(n<0)n=ls.reduce((m,_,i)=>(S.lessons[lid(L,weak.s.id,i)].best<S.lessons[lid(L,weak.s.id,m)].best?i:m),0);
+    const why=weak.pct===0?`${weak.s.en} is the area you haven't started yet.`:`${weak.s.en} is your weakest area at ${L} (${weak.pct} %).`;
+    tasks.push({kind:"lesson",L,sk:weak.s.id,n,title:ls[n].title,sub:`${weak.s.nb} · ${ls[n].en}`,why});
+    // second: a different skill not practised for the longest time
+    const other=sk.slice(1).sort((a,b)=>(a.last<b.last?-1:a.last>b.last?1:0)||a.pct-b.pct).find(x=>lessonsOf(L,x.s.id).some((_,i)=>!S.lessons[lid(L,x.s.id,i)]?.done||S.lessons[lid(L,x.s.id,i)].best<80));
+    if(other){const ol=lessonsOf(L,other.s.id);let m=ol.findIndex((_,i)=>!S.lessons[lid(L,other.s.id,i)]?.done);if(m<0)m=0;
+      const d=daysAgo(other.last);
+      tasks.push({kind:"lesson",L,sk:other.s.id,n:m,title:ol[m].title,sub:`${other.s.nb} · ${ol[m].en}`,why:d==null?"Keep all six areas moving.":`Not practised for ${d===0?"a few hours":d+" day"+(d>1?"s":"")}.`});}
+  }
+  // review: weakest finished lesson below 80 %
+  const done=Object.entries(S.lessons).filter(([k,v])=>v.done&&v.best<80).sort((a,b)=>a[1].best-b[1].best);
+  const rev=done.find(([k])=>!tasks.some(t=>t.kind==="lesson"&&lid(t.L,t.sk,t.n)===k));
+  if(rev){const [L2,sk2,n2]=rev[0].split("-");const les=COURSE[L2][sk2][+n2];tasks.push({kind:"lesson",L:L2,sk:sk2,n:+n2,title:les.title,sub:`Repetisjon · ${skillName(sk2).nb} ${L2}`,why:`Your best score was ${rev[1].best} %. One more round makes it stick.`});}
+  else tasks.push({kind:"quick",L,title:"Rask repetisjon",sub:"8 mixed questions · about 4 min",why:"Short mixed practice from what you've learned."});
+  return tasks.slice(0,3);
+}
+
+/* ---------- speech ---------- */
+let VOICE=null,HASTTS="speechSynthesis" in window;
+function pickVoice(){if(!HASTTS)return;const vs=speechSynthesis.getVoices();VOICE=vs.find(v=>/^(nb|no)([-_]|$)/i.test(v.lang))||vs.find(v=>/^nn/i.test(v.lang))||vs.find(v=>/norw|norsk/i.test(v.name))||null}
+if(HASTTS){pickVoice();speechSynthesis.onvoiceschanged=()=>{pickVoice()}}
+function speak(text,slow){if(!HASTTS)return toast("Audio isn't available in this browser.");speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang="nb-NO";if(VOICE)u.voice=VOICE;u.rate=slow?.65:S.rate;speechSynthesis.speak(u)}
+function voiceNote(){if(!HASTTS)return `<p class="notice">Audio isn't supported in this browser. Try Chrome, Edge or Safari.</p>`;if(VOICE)return "";return `<p class="notice">No Norwegian voice found on this device, so audio may sound wrong. On Android: Settings → Text-to-speech → install Norwegian. On Windows: Settings → Time &amp; language → Speech → add Norsk bokmål.</p>`}
+const playBtns=(t)=>`<div class="row"><button class="btn ghost sm play" data-a="say" data-t="${esc(t)}">▶ Spill av</button><button class="btn link sm" data-a="say" data-t="${esc(t)}" data-slow="1">Sakte</button></div>`;
+
+function toast(m){const d=document.createElement("div");d.className="toast";d.textContent=m;document.body.appendChild(d);setTimeout(()=>d.remove(),2200)}
+
+/* ---------- views ---------- */
+function topbar(){return `<div class="top"><button class="brand" data-a="home"><span class="flag" aria-hidden="true"></span>Norskveien</button><div class="row" style="gap:4px">${acctChip()}${S.target||C.uid?`<button class="btn link" data-a="settings">Innstillinger</button>`:""}</div></div>`}
+
+function vWelcome(){
+  return topbar()+`<div class="stack" style="gap:28px">
+  <div class="stack" style="gap:10px"><p class="eyebrow">Steg 1 av 2</p><h1>Hvor er du nå?</h1><p class="muted">Choose the level you already have. Not sure? Take the 3-minute placement test.</p>${SB&&!C.uid?`<p class="small">Already have an account? <button class="btn link sm" style="padding:0;color:var(--primary);font-weight:600" data-a="auth">Log in</button></p>`:""}</div>
+  <div class="choices">
+    ${[["A1","Little or no Norwegian, or basic phrases only."],["A2",LEVEL_INFO.A2.can],["B1",LEVEL_INFO.B1.can]].map(([c,d])=>`<button class="choice" data-a="pickCur" data-v="${c}"><span class="code">${c==="A1"?"A1 eller lavere":c}</span><span class="small muted">${c==="A1"?"Nybegynner":LEVEL_INFO[c].nb}</span><span class="small">${d}</span></button>`).join("")}
+    <button class="choice alt" data-a="placement"><span class="code">Usikker?</span><span class="small muted">Plasseringstest</span><span class="small">12 short questions tell you where to start.</span></button>
+  </div></div>`}
+
+function vTarget(){
+  const from=LEVELS.indexOf(S.current);
+  const opts=COURSE_LEVELS.filter(L=>LEVELS.indexOf(L)>from);
+  return topbar()+`<div class="stack" style="gap:28px">
+  <div class="stack" style="gap:10px"><p class="eyebrow">Steg 2 av 2</p><h1>Hvor vil du?</h1><p class="muted">You're starting from <b>${S.current}</b>. Pick the level you want to reach. Norskveien guides you one level at a time.</p></div>
+  <div class="choices">${opts.map(L=>`<button class="choice" data-a="pickTarget" data-v="${L}"><span class="code">${L}</span><span class="small muted">${LEVEL_INFO[L].nb} · ${LEVEL_INFO[L].en}</span><span class="small">${LEVEL_INFO[L].can}</span></button>`).join("")}</div>
+  <div><button class="btn link" data-a="welcome">← Endre startnivå</button></div></div>`}
+
+function vPlacement(){
+  const P=V.p;
+  if(P.i>=PLACEMENT.length){
+    const by={};PLACEMENT.forEach((q,i)=>{by[q.l]=(by[q.l]||0)+(P.res[i]?1:0)});
+    let lvl="A0";for(const L of LEVELS){if((by[L]||0)>=2)lvl=L;else break}
+    const cur=lvl==="A0"?"A1":lvl;
+    P.result=cur;
+    const msg=lvl==="A0"?"You're at the very beginning. You'll start with A2 lessons, which cover the basics again as you go.":lvl==="B2"?"You already seem to be at B2. You can still use the B2 lessons for review.":`You seem to have a solid <b>${lvl}</b>. Your next step is <b>${LEVELS[LEVELS.indexOf(lvl)+1]}</b>.`;
+    return topbar()+`<div class="stack" style="gap:24px"><p class="eyebrow">Resultat</p><h1>Ditt nivå: ${lvl==="A0"?"Nybegynner":lvl}</h1><p class="muted" style="max-width:60ch">${msg}</p>
+    <div class="card"><div class="stack" style="gap:10px">${LEVELS.map(L=>`<div class="row" style="justify-content:space-between"><span>${L} · ${LEVEL_INFO[L].nb}</span><span class="pct">${by[L]||0} / 3</span></div>`).join("")}</div></div>
+    <div class="row">${lvl==="B2"?`<button class="btn" data-a="pickCur" data-v="B1">Review B2</button>`:`<button class="btn" data-a="pickCur" data-v="${cur}">Continue from ${cur}</button>`}<button class="btn ghost" data-a="welcome">Choose myself</button></div></div>`;
+  }
+  const q=P.items[P.i];
+  return topbar()+`<div class="lessonhd"><button class="btn link" data-a="welcome">✕</button><div class="progress"><i style="width:${P.i/PLACEMENT.length*100}%"></i></div><span class="small muted pct">${P.i+1}/${PLACEMENT.length}</span></div>
+  <div class="stack" style="gap:20px"><p class="q">${esc(q.q)}</p><div class="opts">${q.opts.map((o,k)=>`<button class="opt" data-a="pAns" data-v="${k}">${esc(o.t)}</button>`).join("")}<button class="opt" data-a="pAns" data-v="-1" style="color:var(--muted)">Jeg vet ikke</button></div></div>`}
+
+function vHome(){
+  const W=working(),p=path();
+  if(!V.level||!COURSE[V.level])V.level=W||p[p.length-1];
+  const L=V.level;
+  const hour=new Date().getHours();
+  const greet=hour<10?"God morgen":hour<17?"God dag":"God kveld";
+  const plan=todayPlan();
+  const st=streak();
+  const back=prevVisit&&prevVisit!==today()?(daysAgo(prevVisit)===1?"Welcome back. You practised yesterday.":`Welcome back. Your last visit was ${daysAgo(prevVisit)} days ago.`):(S.days.length?"Here's what to focus on next.":"Start with the first task below.");
+  const filled=(()=>{const idx=LEVELS.indexOf(W||S.target);return (idx)/(LEVELS.length-1)*75})();
+  const total=S.answered?Math.round(S.correct/S.answered*100):0;
+  const status=x=>LEVELS.indexOf(x)<=LEVELS.indexOf(S.current)?"have":S.tests[x]?.passed?"done":x===W?"now":p.includes(x)?"next":"off";
+  const lvSt=status(L);
+  return topbar()+`<div class="stack" style="gap:28px">
+  <div class="stack" style="gap:6px"><h1>${greet}${C.status==="synced"&&C.name?", "+esc(C.name.split(" ")[0]):""}!</h1><p class="muted">${back}</p></div>
+
+  ${plan?`<section class="today" aria-label="Today's focus">
+    <div class="row" style="justify-content:space-between"><div><p class="eyebrow">Fokus i dag</p><h2 style="margin-top:4px">Your plan for today</h2></div>${st?`<span class="pill">${st} ${st===1?"dag":"dager"} på rad</span>`:""}</div>
+    <div class="stack" style="gap:10px">${plan.map((t,i)=>`<button class="task ${i===0?"main":""}" data-a="task" data-v="${i}"><span class="ix">${i+1}</span><span class="tx"><b>${esc(t.title)}</b>${t.sub?` <span class="small muted">· ${esc(t.sub)}</span>`:""}<br><span class="small muted">${esc(t.why)}</span></span><span class="go">→</span></button>`).join("")}</div>
+  </section>`:`<section class="today"><p class="eyebrow">Mål nådd</p><h2>Gratulerer! Du har nådd ${S.target}.</h2><p class="muted">You passed every level test on your route.${S.target!=="B2"?" Set a new goal to keep going.":" More levels (C1) are coming."}</p><div class="row">${S.target!=="B2"?`<button class="btn" data-a="newGoal">Set a new goal</button>`:""}<button class="btn ghost" data-a="quickAny">Rask repetisjon</button></div></section>`}
+
+  <section class="stack" style="gap:14px">
+    <div class="row" style="justify-content:space-between"><h3>Din vei: ${S.current} → ${S.target}</h3><button class="btn link sm" data-a="newGoal">Endre mål</button></div>
+    <div class="route" role="list">
+      <span class="fill" style="width:${filled}%"></span>
+      ${LEVELS.map(x=>`<button role="listitem" class="stn ${status(x)} ${x===L?"sel":""}" ${COURSE[x]?`data-a="level" data-v="${x}"`:"disabled"} aria-label="${x}"><span class="dot">${status(x)==="have"||status(x)==="done"?"✓":x}</span><span class="lbl">${x}<br>${LEVEL_INFO[x].nb}</span></button>`).join("")}
+    </div>
+  </section>
+
+  <section class="stack" style="gap:16px">
+    <div class="row" style="justify-content:space-between;align-items:flex-end">
+      <div class="stack" style="gap:4px"><div class="row" style="gap:10px"><h2>${L} · ${LEVEL_INFO[L].nb}</h2>${{have:'<span class="pill ok">Already have</span>',done:'<span class="pill ok">Passed</span>',now:'<span class="pill now">Working on</span>',next:'<span class="pill">Coming up</span>',off:'<span class="pill">Outside your goal</span>'}[lvSt]}</div><p class="muted small" style="max-width:60ch">${LEVEL_INFO[L].can}</p></div>
+      <span class="pct">${levelPct(L)} %</span>
+    </div>
+    <div class="skills">${SKILLS.map(s=>{const pc=skillPct(L,s.id);return `<div class="skill"><div class="hd"><div><h3>${s.nb}</h3><span class="small muted">${s.en}</span></div><span class="pct">${pc} %</span></div><div class="bar"><i style="width:${pc}%"></i></div>
+      ${lessonsOf(L,s.id).map((les,n)=>{const r=S.lessons[lid(L,s.id,n)];return `<button class="lessonbtn" data-a="lesson" data-v="${L}|${s.id}|${n}"><span class="lt">${esc(les.title)}</span><span class="st ${r?.best>=80?"ok":""}">${r?.done?r.best+" %":"Start"}</span></button>`}).join("")}</div>`}).join("")}</div>
+    <div class="card row" style="justify-content:space-between"><div class="stack" style="gap:2px"><h3>Nivåtest ${L}</h3><span class="small muted">${S.tests[L]?.passed?`Passed · best ${S.tests[L].best} %`:S.tests[L]?`Best so far ${S.tests[L].best} % · 70 % to pass`:"12 questions from all areas · 70 % to pass"}</span></div><button class="btn ${S.tests[L]?.passed?"ghost":""} sm" data-a="test" data-v="${L}">${S.tests[L]?"Retake test":"Take test"}</button></div>
+  </section>
+
+  <section class="stats">
+    <div class="stat"><b>${S.days.length}</b><span>days practised</span></div>
+    <div class="stat"><b>${S.answered}</b><span>answers</span></div>
+    <div class="stat"><b>${S.answered?total+" %":"–"}</b><span>accuracy</span></div>
+  </section>
+  </div>`}
+
+/* ---------- lesson / test runner ---------- */
+function prep(ex){const it=Object.assign({},ex);if(ex.t==="mc"||ex.t==="listen")it.opts=shuffle(ex.o.map((t,k)=>({t,ok:k===0})));if(ex.t==="order")it.bank=shuffle(ex.w.map((_,k)=>k)),it.picked=[];return it}
+function startRun(kind,opts){
+  let items,meta=opts;
+  if(kind==="lesson"){const les=COURSE[opts.L][opts.sk][opts.n];items=les.ex.map(prep);meta=Object.assign({les},opts)}
+  else{ // test or quick: auto-graded items, no reading-passage items
+    const pool=[];(opts.levels).forEach(L=>SKILLS.forEach(s=>{if(s.id==="lese")return;lessonsOf(L,s.id).forEach((les,n)=>{if(kind==="quick"&&opts.onlyDone&&!S.lessons[lid(L,s.id,n)]?.done)return;les.ex.forEach(e=>{if(["mc","fill","order","listen"].includes(e.t))pool.push(e)})})}));
+    items=shuffle(pool).slice(0,kind==="test"?12:8).map(prep);
+  }
+  V={view:"run",kind,meta,items,i:0,phase:kind==="lesson"?"intro":"ex",res:[],answered:false,level:V.level};
+  render();
+}
+function exHTML(it){
+  const done=V.answered,r=V.res[V.i];
+  let body="";
+  if(it.t==="mc"||it.t==="listen"){
+    body=(it.t==="listen"?`<p class="q">Hvilket hører du?</p>${voiceNote()}${playBtns(it.say)}`:`<p class="q">${esc(it.q)}</p>`)+
+    `<div class="opts">${it.opts.map((o,k)=>`<button class="opt ${done&&o.ok?"right":""} ${done&&V.pick===k&&!o.ok?"wrong":""}" data-a="pick" data-v="${k}" ${done?"disabled":""}>${esc(o.t)}</button>`).join("")}</div>`;
+  }else if(it.t==="fill"){
+    body=`<p class="q">${esc(it.q).replace("___",'<span style="color:var(--muted)">_____</span>')}</p>
+    <div class="stack" style="gap:8px"><input class="inp" id="fillIn" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Skriv svaret" ${done?"disabled":""} value="${esc(V.typed||"")}">
+    ${done?"":`<div class="row" style="justify-content:space-between"><div class="keys">${["æ","ø","å"].map(c=>`<button class="key" data-a="key" data-v="${c}">${c}</button>`).join("")}</div><button class="btn" data-a="checkFill">Sjekk</button></div>`}</div>`;
+  }else if(it.t==="order"){
+    body=`<p class="q">${esc(it.q)}</p>
+    <div class="tiles ans" aria-label="Your sentence">${it.picked.map((k,j)=>`<button class="tile" data-a="unpick" data-v="${j}" ${done?"disabled":""}>${esc(it.w[k])}</button>`).join("")||'<span class="small muted" style="padding:8px">Tap the words in order</span>'}</div>
+    <div class="tiles">${it.bank.map((k,j)=>`<button class="tile" data-a="tile" data-v="${j}" ${done?"disabled":""}>${esc(it.w[k])}</button>`).join("")}</div>
+    ${done?"":`<div class="row" style="justify-content:flex-end"><button class="btn link" data-a="resetOrder">Nullstill</button><button class="btn" data-a="checkOrder" ${it.bank.length?"disabled":""}>Sjekk</button></div>`}`;
+  }else if(it.t==="speak"){
+    body=`<p class="eyebrow">Si det høyt</p><p class="say">${esc(it.say)}</p><p class="muted">${esc(it.en)}</p>${voiceNote()}${playBtns(it.say)}
+    ${it.tip?`<p class="notice">${esc(it.tip)}</p>`:""}
+    <p class="small muted">Listen, then say it aloud three times. How did it go?</p>
+    ${done?"":`<div class="row"><button class="btn" data-a="self" data-v="1">Jeg fikk det til</button><button class="btn ghost" data-a="self" data-v="0">Må øve mer</button></div>`}`;
+  }else if(it.t==="write"){
+    body=`<p class="eyebrow">Skriv</p><p class="q">${esc(it.q)}</p>
+    <div class="row" style="gap:6px">${it.hints.map(h=>`<span class="chip" data-hint="${esc(h)}">${esc(h)}</span>`).join("")}</div>
+    <textarea class="inp" id="writeIn" placeholder="Skriv her …" ${done?"disabled":""}>${esc(V.typed||"")}</textarea>
+    <div class="row" style="justify-content:space-between"><span class="small muted" id="wc">0 / ${it.min} words</span>${done?"":`<button class="btn" data-a="checkWrite" id="wsub" disabled>Lever</button>`}</div>
+    ${done?`<div class="stack" style="gap:8px"><p class="eyebrow">Eksempelsvar</p><div class="model">${esc(it.model)}</div><p class="small muted">Compare with your text. Did you use the structure and the key phrases? Read the model aloud for extra speaking practice.</p>${playBtns(it.model)}</div>`:""}`;
+  }
+  let fb="";
+  if(done&&it.t!=="speak"&&it.t!=="write"){
+    const right=it.t==="mc"||it.t==="listen"?it.opts.find(o=>o.ok).t:it.t==="fill"?it.a[0]:it.w.join(" ");
+    fb=`<div class="fb ${r?"ok":"no"}"><b>${r?"Riktig!":"Ikke helt"}</b>${r?"":`<span>Answer: <b style="font-family:inherit;color:inherit">${esc(right)}</b></span>`}${it.x?`<span class="small">${esc(it.x)}</span>`:""}</div>`;
+  }else if(done&&it.t==="write"){fb=`<div class="fb ${r?"ok":"no"}"><b>${r?"Levert":"Levert – litt kort"}</b><span class="small">${r?"Good length and you used the key phrases.":"Try to reach the word count and use at least half of the key phrases next time."}</span></div>`}
+  return body+fb+(done?`<div class="row" style="justify-content:flex-end"><button class="btn" data-a="next" id="nextBtn">${V.i+1<V.items.length?"Neste":"Se resultat"}</button></div>`:"");
+}
+function vRun(){
+  const m=V.meta,kind=V.kind;
+  const label=kind==="lesson"?`${m.L} · ${skillName(m.sk).nb}`:kind==="test"?`Nivåtest ${m.levels[0]}`:"Rask repetisjon";
+  const hd=`<div class="lessonhd"><button class="btn link" data-a="home" aria-label="Close">✕</button><div class="progress"><i style="width:${V.phase==="done"?100:V.i/V.items.length*100}%"></i></div><span class="small muted">${label}</span></div>`;
+  if(V.phase==="intro"){const les=m.les;
+    return topbar()+hd+`<div class="stack" style="gap:20px"><div class="stack" style="gap:6px"><p class="eyebrow">${label}</p><h1>${esc(les.title)}</h1><p class="muted">${esc(les.en)}</p></div>
+    <div class="prose tablewrap">${les.intro}</div>
+    ${les.text?`<div class="passage">${esc(les.text)}</div>${playBtns(les.text)}`:""}
+    <div><button class="btn" data-a="begin">Start øvelsene (${les.ex.length})</button></div></div>`}
+  if(V.phase==="done"){
+    const g=V.res.length,ok=V.res.filter(Boolean).length,pc=g?Math.round(ok/g*100):0;
+    const pass=kind==="test"?pc>=70:null;
+    let next="";
+    if(kind==="lesson"){const plan=todayPlan();const nx=plan&&plan.find(t=>!(t.kind==="lesson"&&t.L===m.L&&t.sk===m.sk&&t.n===m.n));if(nx)next=`<button class="btn" data-a="taskObj" data-v='${esc(JSON.stringify(nx))}'>Next: ${esc(nx.title)}</button>`}
+    return topbar()+hd+`<div class="stack" style="gap:20px;align-items:flex-start"><p class="eyebrow">${kind==="test"?(pass?"Bestått":"Ikke bestått ennå"):"Ferdig"}</p><p class="score">${pc} %</p>
+    <p class="muted" style="max-width:56ch">${ok} of ${g} right. ${kind==="test"?(pass?`You passed ${m.levels[0]}! ${working()?`Next up: ${working()}.`:"You've reached your goal."}`:"You need 70 %. The plan on the home page will point you to the areas to review."):pc>=80?"Very good. This lesson is marked as strong.":"Saved. It will come back in your plan for review."}</p>
+    <div class="row">${next}<button class="btn ${next?"ghost":""}" data-a="home">Back to overview</button>${kind==="lesson"?`<button class="btn link" data-a="lesson" data-v="${m.L}|${m.sk}|${m.n}">Repeat</button>`:""}</div></div>`}
+  const it=V.items[V.i];
+  const les=m.les;
+  return topbar()+hd+`<div class="stack" style="gap:20px">${les&&les.text?`<details class="passage" ${V.i<2?"open":""}><summary>Tekst</summary>${esc(les.text)}</details>`:""}${exHTML(it)}</div>`;
+}
+
+function vSettings(){
+  return topbar()+`<div class="stack" style="gap:24px"><h1>Innstillinger</h1>
+  ${SB?`<div class="card stack"><h3>Account</h3>${C.uid?`<p class="small">Logged in as <b>${esc(C.name)}</b>. Your progress is saved to your account${C.status==="error"?", but the last save failed. It will retry automatically.":"."}</p><div class="row"><button class="btn ghost sm" data-a="syncNow">Sync now</button><button class="btn ghost sm" data-a="signOut">Log out</button></div>`:`<p class="small">Log in to save your progress to your account and use it on any device. Until then, it's saved in this browser only.</p><div class="row"><button class="btn sm" data-a="auth">Log in</button><button class="btn ghost sm" data-a="signup">Create account</button></div>`}</div>`:""}
+  <div class="card stack"><h3>Levels</h3><p class="muted small">Starting level <b>${S.current}</b>, goal <b>${S.target}</b>. Your lesson progress is kept when you change these.</p><div class="row"><button class="btn ghost sm" data-a="welcome">Change starting level</button><button class="btn ghost sm" data-a="newGoal">Change goal</button></div></div>
+  <div class="card stack"><h3>Audio speed</h3><div class="row">${[[.75,"Slow"],[.9,"Normal"],[1.05,"Natural"]].map(([r,l])=>`<button class="btn ${S.rate===r?"":"ghost"} sm" data-a="rate" data-v="${r}">${l}</button>`).join("")}<button class="btn link sm" data-a="say" data-t="Hei! Hvordan har du det i dag?">▶ Test</button></div>${voiceNote()}</div>
+  <div class="card stack"><h3>Back up your progress</h3><p class="muted small">Progress is saved in this browser only. Copy this code to move it to another device or browser, then paste it there.</p>
+    <textarea class="inp" id="bk" style="min-height:90px;font-size:12px" readonly>${esc(btoa(unescape(encodeURIComponent(JSON.stringify(S)))))}</textarea>
+    <div class="row"><button class="btn ghost sm" data-a="copy">Copy code</button></div>
+    <textarea class="inp" id="imp" style="min-height:70px;font-size:12px" placeholder="Paste a backup code here"></textarea><div><button class="btn ghost sm" data-a="import">Restore from code</button></div></div>
+  <div class="card stack"><h3>Start over</h3><p class="muted small">Deletes all progress in this browser.</p>${V.confirm?`<div class="row"><button class="btn sm" style="background:var(--bad);color:var(--surface)" data-a="reset">Yes, delete everything</button><button class="btn link sm" data-a="settings">Cancel</button></div>`:`<div><button class="btn ghost sm" data-a="askReset">Reset progress</button></div>`}</div>
+  </div>`}
+
+function render(){
+  const v=V.view;
+  $app.innerHTML=v==="welcome"?vWelcome():v==="target"?vTarget():v==="place"?vPlacement():v==="run"?vRun():v==="settings"?vSettings():v==="auth"?vAuth():v==="reset"?vReset():vHome();
+  const f=document.getElementById("fillIn");if(f&&!f.disabled)f.focus();
+  const w=document.getElementById("writeIn");if(w)updWrite();
+  const n=document.getElementById("nextBtn");if(n)n.focus({preventScroll:true});
+}
+
+/* ---------- answering ---------- */
+function record(ok,graded=true){V.res[V.i]=ok;V.answered=true;if(graded){S.answered++;if(ok)S.correct++}markDay();save();render()}
+function finish(){
+  const g=V.res.length,ok=V.res.filter(Boolean).length,pc=g?Math.round(ok/g*100):0,m=V.meta;
+  if(V.kind==="lesson"){const k=lid(m.L,m.sk,m.n),p=S.lessons[k]||{best:0};S.lessons[k]={done:true,best:Math.max(p.best,pc),last:pc,at:today()};S.skillLast[m.L+m.sk]=today()}
+  if(V.kind==="test"){const L=m.levels[0],p=S.tests[L]||{best:0,passed:false};S.tests[L]={best:Math.max(p.best,pc),passed:p.passed||pc>=70}}
+  markDay();save();V.phase="done";render();window.scrollTo(0,0);
+}
+function updWrite(){
+  const w=document.getElementById("writeIn");if(!w)return;const it=V.items[V.i];
+  const n=(w.value.trim().match(/\S+/g)||[]).length;const wc=document.getElementById("wc");if(wc)wc.textContent=`${n} / ${it.min} words`;
+  const low=w.value.toLowerCase();document.querySelectorAll("[data-hint]").forEach(c=>c.classList.toggle("on",low.includes(c.dataset.hint.toLowerCase())));
+  const b=document.getElementById("wsub");if(b)b.disabled=n<Math.ceil(it.min/2);
+}
+function runTask(t){
+  if(t.kind==="lesson")startRun("lesson",{L:t.L,sk:t.sk,n:t.n});
+  else if(t.kind==="test")startRun("test",{levels:[t.L]});
+  else startRun("quick",{levels:path().filter(L=>COURSE[L]&&LEVELS.indexOf(L)<=LEVELS.indexOf(t.L)),onlyDone:Object.keys(S.lessons).length>0});
+}
+
+const A={
+  home(){V={view:S.target?"home":"welcome",level:V.level};if(HASTTS)speechSynthesis.cancel();render();window.scrollTo(0,0)},
+  welcome(){V={view:"welcome",manual:true};render()},
+  settings(){V={view:"settings",level:V.level};render()},
+  pickCur(v){S.current=v;save();V={view:"target"};render()},
+  newGoal(){V={view:"target",manual:true};render()},
+  pickTarget(v){S.target=v;save();V={view:"home"};render();window.scrollTo(0,0)},
+  placement(){V={view:"place",p:{i:0,res:[],items:PLACEMENT.map(prep)}};render()},
+  pAns(v){const P=V.p,q=P.items[P.i];P.res[P.i]=+v>=0&&q.opts[+v].ok;P.i++;render()},
+  level(v){V.level=v;render()},
+  lesson(v){const [L,sk,n]=v.split("|");startRun("lesson",{L,sk,n:+n})},
+  test(v){startRun("test",{levels:[v]})},
+  quickAny(){startRun("quick",{levels:COURSE_LEVELS.filter(L=>p0(L)),onlyDone:true})},
+  task(v){runTask(todayPlan()[+v])},
+  taskObj(v){runTask(JSON.parse(v))},
+  begin(){V.phase="ex";render();window.scrollTo(0,0)},
+  say(_,b){speak(b.dataset.t,!!b.dataset.slow)},
+  pick(v){const it=V.items[V.i];V.pick=+v;record(it.opts[+v].ok)},
+  key(v){const f=document.getElementById("fillIn");if(!f)return;const s=f.selectionStart??f.value.length;f.value=f.value.slice(0,s)+v+f.value.slice(f.selectionEnd??s);f.focus();f.setSelectionRange(s+1,s+1)},
+  checkFill(){const f=document.getElementById("fillIn");const val=f.value;if(!val.trim())return f.focus();V.typed=val;const it=V.items[V.i];record(it.a.some(a=>norm(a)===norm(val)))},
+  tile(v){const it=V.items[V.i];it.picked.push(it.bank.splice(+v,1)[0]);render()},
+  unpick(v){const it=V.items[V.i];it.bank.push(it.picked.splice(+v,1)[0]);render()},
+  resetOrder(){const it=V.items[V.i];it.bank=shuffle(it.w.map((_,k)=>k));it.picked=[];render()},
+  checkOrder(){const it=V.items[V.i];const s=norm(it.picked.map(k=>it.w[k]).join(" "));record([it.w.join(" "),...it.alt].some(a=>norm(a)===s))},
+  self(v){record(v==="1",false)},
+  checkWrite(){const w=document.getElementById("writeIn");const it=V.items[V.i];V.typed=w.value;const n=(w.value.trim().match(/\S+/g)||[]).length;const low=w.value.toLowerCase();const used=it.hints.filter(h=>low.includes(h.toLowerCase())).length;record(n>=it.min&&used>=Math.ceil(it.hints.length/2),false)},
+  next(){V.typed="";V.pick=null;if(V.i+1<V.items.length){V.i++;V.answered=false;render();window.scrollTo(0,0)}else finish()},
+  rate(v){S.rate=+v;save();render()},
+  copy(){const t=document.getElementById("bk");const done=()=>toast("Copied");try{navigator.clipboard.writeText(t.value).then(done,()=>{t.select();toast("Selected. Press Ctrl+C or Copy.")})}catch(e){t.select();toast("Selected. Press Ctrl+C or Copy.")}},
+  import(){const t=document.getElementById("imp").value.trim();if(!t)return toast("Paste a code first.");try{const d=JSON.parse(decodeURIComponent(escape(atob(t))));if(!d||typeof d!=="object"||!("lessons" in d))throw 0;S=Object.assign(fresh(),d);save();toast("Progress restored");A.home()}catch(e){toast("That code doesn't look right. Copy the whole code and try again.")}},
+  askReset(){V.confirm=true;render()},
+  reset(){S=fresh();save();V={view:"welcome"};render();toast("Progress deleted")},
+  syncNow(){cloudWrite().then(()=>toast(C.status==="synced"?"Synced":"Couldn't sync. Try again later."))},
+  auth(){V={view:"auth",mode:"signin"};render()},
+  signup(){V={view:"auth",mode:"signup"};render()},
+  authMode(){V={view:"auth",mode:V.mode==="signup"?"signin":"signup"};render()},
+  async forgot(){const e=document.getElementById("au-email").value.trim();if(!/^\S+@\S+\.\S+$/.test(e)){V.err="Type your email above first, then click Forgot password.";return render()}const {error}=await SB.auth.resetPasswordForEmail(e,{redirectTo:location.origin+location.pathname});V.err=error?error.message:"";V.msg=error?"":"If that email has an account, a reset link is on its way.";render()},
+  async signOut(){await SB.auth.signOut();C.uid=null;C.name="";S=fresh();try{localStorage.removeItem(KEY)}catch(e){}V={view:"welcome"};setCloud("signedout");render();toast("Logged out")}
+};
+function p0(L){return SKILLS.some(s=>lessonsOf(L,s.id).some((_,n)=>S.lessons[lid(L,s.id,n)]?.done))}
+
+$app.addEventListener("click",e=>{const b=e.target.closest("[data-a]");if(!b||b.disabled)return;const f=A[b.dataset.a];if(f)f(b.dataset.v,b)});
+$app.addEventListener("submit",e=>{if(e.target.id==="authForm"){e.preventDefault();authSubmit()}if(e.target.id==="resetForm"){e.preventDefault();resetSubmit()}});
+$app.addEventListener("input",e=>{if(e.target.id==="writeIn")updWrite()});
+$app.addEventListener("keydown",e=>{if(e.target.id==="fillIn"&&e.key==="Enter"){e.preventDefault();A.checkFill()}});
+render();
+cloudInit();
+</script>
+
+</body>
+</html>
